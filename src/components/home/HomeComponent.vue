@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import NewButton from '../home/NewButton.vue';
-import NewGame from '../home/NewGame.vue';
-import NewPlayer from '../home/NewPlayer.vue';
+import NewButton from './NewButton.vue';
+import NewGame from './NewGame.vue';
+import NewPlayer from './NewPlayer.vue';
 
 const newPlayerActiv = ref(false);
     

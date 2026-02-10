@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue';
 import GameCounterView from '@/views/RegisterGameView.vue';
-import TableView from '@/views/TableView.vue';
+import TableView from '@/views/TabelView.vue';
 
 const routes = [
   {

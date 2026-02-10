@@ -1,6 +1,6 @@
 <script setup>
 import GameInformation from './GameInformation.vue';
-import TableList from './TableList.vue';
+import TableList from './TabelList.vue';
 
 
 </script>
