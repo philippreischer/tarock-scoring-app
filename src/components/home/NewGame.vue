@@ -1,13 +1,9 @@
 <script setup>
-import Tables from '@/components/table/Tables.vue';
-
-
-
+    
 </script>
 
 <template>
-    <Tables />
-
+    <h1>NewGame</h1>
 </template>
 
 <style scoped>

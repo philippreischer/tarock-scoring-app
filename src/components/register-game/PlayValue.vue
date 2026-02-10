@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <h1>GameCounterView</h1>
+    <h1>PlayValue</h1>
 </template>
 
 <style scoped>

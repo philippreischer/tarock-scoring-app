@@ -5,8 +5,8 @@
 <template>
     <nav class="navbar">
         <router-link class="nav-link" to="/">Home</router-link>
-        <router-link class="nav-link" to="/GameCounter">Spiel eintragen</router-link>
-        <router-link class="nav-link" to="/table">Tabelle</router-link>
+        <router-link class="nav-link" to="/SpielEintragen">Spiel eintragen</router-link>
+        <router-link class="nav-link" to="/tabelle">Tabelle</router-link>
     </nav>
     <router-view />
 

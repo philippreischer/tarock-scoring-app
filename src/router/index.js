@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue';
-import GameCounterView from '@/views/GameCounterView.vue';
+import GameCounterView from '@/views/RegisterGameView.vue';
 import TableView from '@/views/TableView.vue';
 
 const routes = [
@@ -10,13 +10,13 @@ const routes = [
     component: HomeView,
   },
   {
-    path: '/GameCounter',
-    name: 'GameCounter',
+    path: '/SpielEintragen',
+    name: 'SpielEintragen',
     component: GameCounterView,
   },
   {
-    path: '/table',
-    name: 'table',
+    path: '/tabelle',
+    name: 'tabelle',
     component: TableView,
   },
 ]
