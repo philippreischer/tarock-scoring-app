@@ -4,7 +4,7 @@ import NewButton from './NewButton.vue';
 import NewGame from './NewGame.vue';
 import NewPlayer from './NewPlayer.vue';
 
-const newPlayerActiv = ref(false);
+const newPlayerActiv = ref(true);
     
 </script>
 

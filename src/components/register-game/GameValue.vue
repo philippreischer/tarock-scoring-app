@@ -6,32 +6,35 @@
 </script>
 
 <template>
-    <div class="game-card" v-for="player in games[0].players" :key="player.id">
-        <!-- <div>{{players.points}}</div> -->
-        <ul >
-            <li class="card-players" >
-            <span class="grid-players">{{player.name}}</span>
-            </li>
-        </ul>          
+    <div class="game-value-area">
+            <span class="counter">0</span>
+            <span class="okay-button">OK</span>       
     </div>
     
 </template>
 
 <style scoped>
-    .game-card{
+    .game-value-area{
         margin:20px;
         padding: 15px;
         background: #ffffff;
         border-radius: 10px;
+        border: solid 1px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        cursor: pointer;
         display:flex;
         align-items: center;
+        justify-content: space-between;
     }
     
-    .card-players{
+    .counter{
         margin: 0 15px;
         list-style: none;
+    }
+
+    .okay-button{
+        margin: 0 15px;
+        list-style: none;
+        cursor: pointer;
     }
 
 </style>
