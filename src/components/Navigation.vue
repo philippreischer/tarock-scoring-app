@@ -13,12 +13,15 @@
 </template>
 
 <style scoped>
+
     .navbar{
-       display:flex;
+        display:flex;
         justify-content: space-around;
+        margin: 40px;
     }
     .nav-link{
         text-decoration: none;
         color: inherit;
     }
+
 </style>
