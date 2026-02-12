@@ -1,16 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import NewButton from './NewButton.vue';
-import NewGame from './GameList.vue';
-import NewPlayer from './PlayerList.vue';
+import GameList from './GameList.vue';
+import PlayerList from './PlayerList.vue';
 
-const newPlayerActiv = ref(false);
+const newPlayerActiv = ref(true);
     
 </script>
 
 <template>
-    <NewGame v-if="!newPlayerActiv"></NewGame>
-    <NewPlayer v-else-if="newPlayerActiv"></NewPlayer>
+    <GameList v-if="!newPlayerActiv"></GameList>
+    <PlayerList v-else-if="newPlayerActiv"></PlayerList>
     <NewButton></NewButton>
 </template>
 
