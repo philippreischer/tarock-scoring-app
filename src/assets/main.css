@@ -6,5 +6,15 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.color-gray{
+        background-color: #e9e9ed;
+    }
 
+    .color-green{
+        background-color: #00d342;    
+    }
+
+    .color-red{
+       background-color: #ff0000; 
+    }
 

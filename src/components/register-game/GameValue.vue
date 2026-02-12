@@ -8,7 +8,7 @@
 <template>
     <div class="game-value-area">
             <span class="counter">0</span>
-            <span class="okay-button">OK</span>       
+            <span class="okay-button">&#10003;</span>       
     </div>
     
 </template>

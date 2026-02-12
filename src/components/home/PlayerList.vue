@@ -6,15 +6,13 @@
 </script>
 
 <template>
-    <div class="game-card" v-for="game in games" :key="game.id">
+    <div class="game-card" v-for="player in games[games.id].players" :key="player.id">
         <!-- <div>{{players.points}}</div> -->
         <ul >
-            <li class="card-players" v-for="player in games[0].players" :key="player.id">
+            <li class="card-players" >
             <span class="grid-players">{{player.name}}</span>
-            <span class="grid-points">{{player.points[game.rounds -1]}}</span>
             </li>
-        </ul>
-            <div>{{ game.date }}</div>           
+        </ul>          
     </div>
     
 </template>
@@ -22,33 +20,18 @@
 <style scoped>
     .game-card{
         margin:20px;
+        padding: 15px;
         background: #ffffff;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         cursor: pointer;
         display:flex;
+        align-items: center;
     }
     
     .card-players{
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
         margin: 0 15px;
-        
-
+        list-style: none;
     }
-    .grid-players{
-        grid-column: span 3;
-        text-align: left;
-    }
-    .grid-points{
-        grid-column: span 1;
-        text-align: right;
-    }
-
-    .grid-points{
-        grid-column: span 2;
-        text-align: right;
-    }
-
 
 </style>

@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 import NewButton from './NewButton.vue';
-import NewGame from './NewGame.vue';
-import NewPlayer from './NewPlayer.vue';
+import NewGame from './GameList.vue';
+import NewPlayer from './PlayerList.vue';
 
-const newPlayerActiv = ref(true);
+const newPlayerActiv = ref(false);
     
 </script>
 

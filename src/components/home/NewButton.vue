@@ -4,7 +4,7 @@
 
 <template>
     <div class="plus-button-container" >
-        <button class="button-plus bc-light-blue color-gray">
+        <button class="button-plus ">
             <span class="plus">+</span>
         </button>
     </div>
@@ -22,6 +22,7 @@
 
 .button-plus {
     border-radius: 10Px;
+    background-color: #e9e9ed;
     border: solid 1px black;
     font-weight: bold;
     display: flex;
