@@ -7,14 +7,17 @@
 }
 
 .color-gray{
-        background-color: #e9e9ed;
-    }
+    background-color: #e9e9ed;
+}
 
-    .color-green{
-        background-color: #00d342;    
-    }
+.color-green{
+    background-color: #00d342;    
+}
 
-    .color-red{
-       background-color: #ff0000; 
-    }
+.color-red{
+    background-color: #ff0000; 
+}
 
+.font-size-small{
+    font-size: 12px;
+}

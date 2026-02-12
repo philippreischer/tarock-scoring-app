@@ -2,11 +2,11 @@
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
     const games = gameStore.games;
-    console.log(games[0].players);
+    console.log(games[1].players);
 </script>
 
 <template>
-    <div class="game-card" v-for="game in games" :key="game.id">
+    <div class="game-card font-size-small" v-for="game in games" :key="game.id">
         <!-- <div>{{players.points}}</div> -->
         <ul >
             <li class="card-players" v-for="player in games[game.id -1].players" :key="player.id">
@@ -34,6 +34,7 @@
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         margin: 0 15px;
+        padding: 1px;
         
     }
     .grid-players{
