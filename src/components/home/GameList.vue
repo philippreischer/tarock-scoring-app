@@ -1,5 +1,5 @@
 <script setup>
-    import { ref } from 'vue'
+    import { ref } from 'vue';
     import  { useGameStore } from '@/stores/gameStore.js';
     import DeleteGame from './DeleteGame.vue';
     const gameStore = useGameStore();

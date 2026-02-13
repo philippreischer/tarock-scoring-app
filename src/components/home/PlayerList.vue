@@ -1,24 +1,31 @@
 <script setup>
+    import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
+    import DeletePlayer from './DeletePlayer.vue';
     const gameStore = useGameStore();
     const games = gameStore.games;
     console.log(games[1].players);
+
+    let deletePlayerActive = ref(false);
+    const deletePlayer = (index) => { deletePlayerActive.value = true; console.log("index: " + index)};
 </script>
 
 <template>
-    <div class="game-card" v-for="player in games[1].players" :key="player.id">
-        <!-- <div>{{players.points}}</div> -->
+    <div class="players-card" v-for="(player, index) in games[1].players" :key="player.id">
         <ul >
             <li class="card-players" >
             <span class="grid-players">{{player.name}}</span>
             </li>
-        </ul>          
+        </ul>
+        <div type="button" class="font-size-big" @click="deletePlayer(index)">&#x2630;</div>          
     </div>
-    
+    <div v-if="deletePlayerActive" class="delete-player-card">
+        <DeletePlayer :deletePlayerActive="deletePlayerActive" @deletePlayerActive="deletePlayerActive = false"/>
+    </div>
 </template>
 
 <style scoped>
-    .game-card{
+    .players-card{
         margin:20px;
         padding: 15px;
         background: #ffffff;
@@ -27,11 +34,21 @@
         cursor: pointer;
         display:flex;
         align-items: center;
+        justify-content: space-between;
     }
     
     .card-players{
         margin: 0 15px;
         list-style: none;
+        display:flex;
+    }
+
+    .delete-player-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+        height: 0vh;
     }
 
 </style>
