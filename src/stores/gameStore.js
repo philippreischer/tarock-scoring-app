@@ -2,10 +2,9 @@ import { defineStore } from 'pinia';
 
 export const useGameStore = defineStore(`games`, {
     state: () => ({
+        newGameActiv: false,
+        newPlayerActive: false,
         games:[
-            // {
-            //     activeIndex: 1,
-            // },
             { 
                 id: 1,
                 active: true, 
@@ -38,4 +37,15 @@ export const useGameStore = defineStore(`games`, {
             },     
         ],
     }),
+    actions: {
+        changeHomeList(to) {
+            console.log(to)
+            return this.newGameActiv = to
+            
+        }, 
+        openNewPlayerCard(to) {
+            console.log(to)
+            return this.newPlayerActive = to
+        },   
+    }   
 }); 

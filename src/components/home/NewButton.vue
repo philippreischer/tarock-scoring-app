@@ -1,15 +1,19 @@
 <script setup>
-    
+    import { ref } from 'vue';
+    import  { useGameStore } from '@/stores/gameStore.js';
+    const gameStore = useGameStore();
+
 </script>
 
 <template>
     <div class="plus-button-container" >
-        <button class="button-plus ">
+        <button v-if="!gameStore.newGameActiv" class="button-plus " @click="gameStore.changeHomeList(true)">
             <span class="plus">+</span>
         </button>
-    </div>
-
-    
+        <button v-else-if="gameStore.newGameActiv" class="button-plus " @click="gameStore.openNewPlayerCard(true)">
+            <span class="plus">+</span>
+        </button>
+    </div>  
 </template>
 
 <style scoped>

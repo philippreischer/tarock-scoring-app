@@ -2,9 +2,10 @@
     import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
     import DeletePlayer from './DeletePlayer.vue';
+    import NewPlayer from './NewPlayer.vue';
     const gameStore = useGameStore();
     const games = gameStore.games;
-    console.log(games[1].players);
+    
 
     let deletePlayerActive = ref(false);
     const deletePlayer = (index) => { deletePlayerActive.value = true; console.log("index: " + index)};
@@ -21,6 +22,9 @@
     </div>
     <div v-if="deletePlayerActive" class="delete-player-card">
         <DeletePlayer :deletePlayerActive="deletePlayerActive" @deletePlayerActive="deletePlayerActive = false"/>
+    </div>
+    <div v-else-if="gameStore.newPlayerActive" class="delete-player-card">
+        <NewPlayer />
     </div>
 </template>
 
