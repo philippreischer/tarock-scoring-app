@@ -35,6 +35,11 @@
     position: absolute;
     bottom: 0;
     margin: 40px;
+    color: #3d3d3d;
+}
+
+.button-plus:hover {
+    color: black;
 }
 
 .plus{

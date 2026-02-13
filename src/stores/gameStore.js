@@ -35,7 +35,7 @@ export const useGameStore = defineStore(`games`, {
                     {id: 4, name: "Arthur", points: [3,-2,3,4,5,2,1,4]},
                     {id: 4, name: "Maria", points: [3,-2,3,4,5,2,1,4]},
                 ],
-            },   
-        ]
-    })
+            },     
+        ],
+    }),
 }); 
