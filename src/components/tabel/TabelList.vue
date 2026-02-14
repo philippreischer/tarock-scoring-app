@@ -2,20 +2,20 @@
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
     const games = gameStore.games;
-    console.log(games[0].players);
+    
 </script>
 
 <template>   
         <tabel class="font-size-small">
             <tr class="tabel-grid font-size-small">
                 
-                <th class="tabel-head" v-for="player in games[1].players" :key="player.id">{{ player.name }}</th> 
+                <th class="tabel-head" v-for="player in games[gameStore.activeGameIndex].players" :key="player.id">{{ player.name }}</th> 
                 <th class="tabel-head"></th>  
             </tr>
-            <tr class="tabel-grid" v-for="(game, index) in games[1].rounds" :key="game.id">
+            <tr class="tabel-grid" v-for="(game, index) in games[gameStore.activeGameIndex].rounds" :key="game.id">
                 
-                <td class="tabel-item color-gray" v-for="player in games[1].players" :key="player.id">{{ player.points[index] }}</td>
-                <td class="tabel-item" >{{ games[1].gamePoints[index] }}</td> 
+                <td class="tabel-item color-gray" v-for="player in games[gameStore.activeGameIndex].players" :key="player.id">{{ player.points[index] }}</td>
+                <td class="tabel-item" >{{ games[gameStore.activeGameIndex].gamePoints[index] }}</td> 
             </tr>
         </tabel>     
 </template>

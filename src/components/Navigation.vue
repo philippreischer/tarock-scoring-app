@@ -6,7 +6,7 @@ import  { useGameStore } from '@/stores/gameStore.js';
 
 <template>
     <nav class="navbar">
-        <router-link class="nav-link" to="/" @click="gameStore.changeHomeList(false)">Home</router-link>
+        <router-link class="nav-link" to="/" @click="gameStore.changeHomeList(false, 0)">Home</router-link>
         <router-link class="nav-link" to="/SpielEintragen">Spiel eintragen</router-link>
         <router-link class="nav-link" to="/tabelle">Tabelle</router-link>
     </nav>

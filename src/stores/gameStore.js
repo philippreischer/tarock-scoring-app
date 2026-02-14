@@ -4,6 +4,7 @@ export const useGameStore = defineStore(`games`, {
     state: () => ({
         newGameActiv: false,
         newPlayerActive: false,
+        activeGameIndex:0,
         games:[
             { 
                 id: 1,
@@ -38,14 +39,30 @@ export const useGameStore = defineStore(`games`, {
         ],
     }),
     actions: {
-        changeHomeList(to) {
+        changeHomeList(to, index) {
             console.log(to)
-            return this.newGameActiv = to
-            
+            console.log(index)
+            this.activeGameIndex = index 
+            return this.newGameActiv = to  
         }, 
         openNewPlayerCard(to) {
             console.log(to)
             return this.newPlayerActive = to
-        },   
+        },
+        addNewGame() {
+            let heute = new Date();
+            this.games.push(
+                { 
+                id: this.games.length +1,
+                active: true, 
+                date: heute.toLocaleDateString("de-DE"), 
+                rounds: 0,
+                gamePoints: [],
+                players: []
+            }
+            )
+            
+        }
+   
     }   
 }); 

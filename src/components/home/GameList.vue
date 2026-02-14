@@ -11,7 +11,7 @@
 </script>
 
 <template>
-    <div class="game-card font-size-small" v-for="(game, index) in games" :key="game.id" @click="gameStore.changeHomeList(true)">
+    <div class="game-card font-size-small" v-for="(game, index) in games" :key="game.id" @click="gameStore.changeHomeList(true, index)">
         <!-- <div>{{players.points}}</div> -->
          <div class="grid-date">{{ game.date }}</div> 
         <ul >

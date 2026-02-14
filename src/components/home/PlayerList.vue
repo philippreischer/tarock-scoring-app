@@ -12,7 +12,7 @@
 </script>
 
 <template>
-    <div class="players-card" v-for="(player, index) in games[1].players" :key="player.id">
+    <div class="players-card" v-for="(player, index) in games[gameStore.activeGameIndex].players" :key="player.id">
         <ul >
             <li class="card-players" >
             <span class="grid-players">{{player.name}}</span>

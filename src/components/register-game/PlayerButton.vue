@@ -2,12 +2,12 @@
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
     const games = gameStore.games;
-    console.log(games[0].players);
+    
 </script>
 
 <template>
     <div class="player-grid">
-        <div class="player-card" v-for="player in games[0].players" :key="player.id">
+        <div class="player-card" v-for="player in games[gameStore.activeGameIndex].players" :key="player.id">
             <!-- <div>{{players.points}}</div> -->
             <span class="">{{player.name}}</span>
             <div class="card-status color-gray">

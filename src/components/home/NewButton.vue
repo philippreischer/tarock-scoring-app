@@ -7,7 +7,7 @@
 
 <template>
     <div class="plus-button-container" >
-        <button v-if="!gameStore.newGameActiv" class="button-plus " @click="gameStore.changeHomeList(true)">
+        <button v-if="!gameStore.newGameActiv" class="button-plus " @click="gameStore.addNewGame()">
             <span class="plus">+</span>
         </button>
         <button v-else-if="gameStore.newGameActiv" class="button-plus " @click="gameStore.openNewPlayerCard(true)">
