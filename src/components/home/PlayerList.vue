@@ -1,7 +1,7 @@
 <script setup>
     import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
-    import DeletePlayer from './DeletePlayer.vue';
+    import ChangePlayer from './ChangePlayer.vue';
     import NewPlayer from './NewPlayer.vue';
     const gameStore = useGameStore();
     const games = gameStore.games;
@@ -20,10 +20,10 @@
         </ul>
         <div type="button" class="font-size-big" @click="deletePlayer(index)">&#x2630;</div>          
     </div>
-    <div v-if="deletePlayerActive" class="delete-player-card">
-        <DeletePlayer :deletePlayerActive="deletePlayerActive" @deletePlayerActive="deletePlayerActive = false"/>
+    <div v-if="deletePlayerActive" class="update-player-cards">
+        <ChangePlayer :deletePlayerActive="deletePlayerActive" @deletePlayerActive="deletePlayerActive = false"/>
     </div>
-    <div v-else-if="gameStore.newPlayerActive" class="delete-player-card">
+    <div v-else-if="gameStore.newPlayerActive" class="update-player-cards">
         <NewPlayer />
     </div>
 </template>
@@ -47,12 +47,14 @@
         display:flex;
     }
 
-    .delete-player-card{
+    .update-player-cards{
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 99;
-        height: 0vh;
+        position:absolute;
+        top: 35vh;
+        left:50px;
     }
 
 </style>
