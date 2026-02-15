@@ -20,7 +20,7 @@
             <span class="grid-points">{{player.points[game.rounds -1]}}</span>
             </li>
         </ul>
-            <div type="button" class="grid-icon font-size-big" @click="deleteGame(index)">&#x2630;</div>           
+            <!-- <div type="button" class="grid-icon font-size-big" @click="deleteGame(index)">&#x2630;</div>            -->
     </div>
     <div v-if="deleteGameActive" class="delete-game-card">
         <DeleteGame :deleteGameActive="deleteGameActive" @deleteGameActive="deleteGameActive = false"/>

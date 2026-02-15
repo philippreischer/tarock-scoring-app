@@ -52,16 +52,32 @@ export const useGameStore = defineStore(`games`, {
         addNewGame() {
             let heute = new Date();
             this.games.push(
-                { 
-                id: this.games.length +1,
-                active: true, 
-                date: heute.toLocaleDateString("de-DE"), 
-                rounds: 0,
-                gamePoints: [],
-                players: []
-            }
-            )
-            
+                    { 
+                    id: this.games.length +1,
+                    active: true, 
+                    date: heute.toLocaleDateString("de-DE"), 
+                    rounds: 0,
+                    gamePoints: [],
+                    players: []
+                }
+            )    
+        },
+        addNewPlayer(newName) {  
+            this.games[this.activeGameIndex].players.push(
+                    { 
+                    id: this.games[this.activeGameIndex].players.length +1, 
+                    name: newName, 
+                    points: []
+                }
+            )    
+        },
+        updateddate() {
+            let heute = new Date();
+            this.games.push(
+                    { 
+                    date: heute.toLocaleDateString("de-DE"), 
+                }
+            )    
         }
    
     }   

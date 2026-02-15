@@ -1,21 +1,19 @@
 <script setup>
+    import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
     const games = gameStore.games;
 
-   /* defineProps({
-        deleteGameActive: Boolean
-        })
-    const emit = defineEmits(['deletePlayerActive'])
-    */
+   const newName = ref('')
+
 </script>
 
 <template>
     <div class="delite-player-card">
         <h2 class="font-size-big">Spielernamen</h2>
-            <input type="text" class="text-area">    
+            <input v-model="newName" type="text" class="text-area" placeholder="Name eingeben">    
         <div class="button-area">
-            <span class="yes-button">&#10003;</span>
+            <span class="yes-button" @click="gameStore.addNewPlayer(newName)">&#10003;</span>
             <span class="no-button" @click="gameStore.openNewPlayerCard(false)">X</span>     
         </div>      
     </div>
