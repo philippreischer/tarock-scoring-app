@@ -23,7 +23,10 @@
             <!-- <div type="button" class="grid-icon font-size-big" @click="deleteGame(index)">&#x2630;</div>            -->
     </div>
     <div v-if="deleteGameActive" class="delete-game-card">
-        <DeleteGame :deleteGameActive="deleteGameActive" @deleteGameActive="deleteGameActive = false"/>
+        <DeleteGame 
+            :deleteGameActive="deleteGameActive" 
+            @deleteGameActive="deleteGameActive = false"
+        />
     </div>
     
 </template>

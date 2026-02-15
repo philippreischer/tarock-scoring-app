@@ -8,7 +8,12 @@
     
 
     let deletePlayerActive = ref(false);
-    const deletePlayer = (index) => { deletePlayerActive.value = true; console.log("index: " + index)};
+    const deletePlayer = (index) => { 
+        deletePlayerActive.value = true; 
+        console.log("index: " + index)
+        gameStore.activePlayerIndex = index;
+        console.log("index P: " + gameStore.activePlayerIndex)
+    };
 </script>
 
 <template>

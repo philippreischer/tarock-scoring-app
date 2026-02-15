@@ -5,6 +5,7 @@ export const useGameStore = defineStore(`games`, {
         newGameActiv: false,
         newPlayerActive: false,
         activeGameIndex:0,
+        activePlayerIndex:0,
         games:[
             { 
                 id: 1,
@@ -69,16 +70,16 @@ export const useGameStore = defineStore(`games`, {
                     name: newName, 
                     points: []
                 }
-            )    
+            )
+            this.updateddate()    
         },
         updateddate() {
-            let heute = new Date();
-            this.games.push(
-                    { 
-                    date: heute.toLocaleDateString("de-DE"), 
-                }
-            )    
-        }
-   
+            let heute = new Date()
+            this.games[this.activeGameIndex].date = heute.toLocaleDateString("de-DE")
+        },
+        removePlayer (index) {
+            this.games[this.activeGameIndex].players.splice(index, 1);
+        },
+
     }   
 }); 
