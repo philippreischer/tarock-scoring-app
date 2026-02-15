@@ -4,29 +4,28 @@
     import ChangePlayer from './ChangePlayer.vue';
     import NewPlayer from './NewPlayer.vue';
     const gameStore = useGameStore();
-    const games = gameStore.games;
     
 
-    let deletePlayerActive = ref(false);
-    const deletePlayer = (index) => { 
-        deletePlayerActive.value = true; 
+  /*  const deletePlayer = (index) => { 
+        gameStore.deletePlayerActive = true; 
         console.log("index: " + index)
         gameStore.activePlayerIndex = index;
         console.log("index P: " + gameStore.activePlayerIndex)
     };
+  */
 </script>
 
 <template>
-    <div class="players-card" v-for="(player, index) in games[gameStore.activeGameIndex].players" :key="player.id">
+    <div class="players-card" v-for="(player, index) in gameStore.games[gameStore.activeGameIndex].players" :key="player.id">
         <ul >
             <li class="card-players" >
             <span class="grid-players">{{player.name}}</span>
             </li>
         </ul>
-        <div type="button" class="font-size-big" @click="deletePlayer(index)">&#x2630;</div>          
+        <div type="button" class="font-size-big" @click="gameStore.changePlayerOpen(index)">&#x2630;</div>          
     </div>
-    <div v-if="deletePlayerActive" class="update-player-cards">
-        <ChangePlayer :deletePlayerActive="deletePlayerActive" @deletePlayerActive="deletePlayerActive = false"/>
+    <div v-if="gameStore.changePlayerActive" class="update-player-cards">
+        <ChangePlayer />
     </div>
     <div v-else-if="gameStore.newPlayerActive" class="update-player-cards">
         <NewPlayer />

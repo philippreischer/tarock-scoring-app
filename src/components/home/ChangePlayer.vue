@@ -2,15 +2,15 @@
     import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-    const games = gameStore.games;
-
+    
+/*
     const newName = ref('')
     gameStore.games[gameStore.activeGameIndex].players[1].name
     defineProps({
         deleteGameActive: Boolean
         })
     const emit = defineEmits(['deletePlayerActive'])
-    
+ */   
 
 </script>
 
@@ -20,8 +20,8 @@
             <input v-model="newName" type="text" class="text-area" placeholder="">    
         <h2 class="font-size-big">Spieler löschen?</h2>
         <div class="button-area">
-            <span class="yes-button" @click="gameStore.removePlayer(gameStore.activePlayerIndex)">Ja</span>
-            <span class="no-button" @click="emit('deletePlayerActive')">Nein</span>     
+            <span class="yes-button" @click="gameStore.removePlayer (gameStore.activePlayerIndex)">Ja</span>
+            <span class="no-button" @click="gameStore.changePlayerClose()">Nein</span>     
         </div>      
     </div>
     

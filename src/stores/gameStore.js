@@ -2,10 +2,15 @@ import { defineStore } from 'pinia';
 
 export const useGameStore = defineStore(`games`, {
     state: () => ({
+        //Home oder Spiel ansicht
         newGameActiv: false,
         newPlayerActive: false,
+        //Index
         activeGameIndex:0,
         activePlayerIndex:0,
+        //Cards
+        deleteGameActive: false,
+        changePlayerActive: false,
         games:[
             { 
                 id: 1,
@@ -79,7 +84,16 @@ export const useGameStore = defineStore(`games`, {
         },
         removePlayer (index) {
             this.games[this.activeGameIndex].players.splice(index, 1);
+            this.changePlayerClose();
         },
-
+        changePlayerOpen(index){
+            this.changePlayerActive = true; 
+            console.log("index: " + index)
+            this.activePlayerIndex = index;
+            console.log("index P: " + this.activePlayerIndex)
+        },
+        changePlayerClose(){
+            this.changePlayerActive = false;
+        }
     }   
 }); 

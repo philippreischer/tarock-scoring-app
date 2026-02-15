@@ -4,9 +4,8 @@ import NewButton from './NewButton.vue';
 import GameList from './GameList.vue';
 import PlayerList from './PlayerList.vue';
 import  { useGameStore } from '@/stores/gameStore.js';
-    const gameStore = useGameStore();
+const gameStore = useGameStore();
     
-
 
 </script>
 

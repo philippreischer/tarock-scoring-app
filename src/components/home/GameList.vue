@@ -3,19 +3,18 @@
     import  { useGameStore } from '@/stores/gameStore.js';
     import DeleteGame from './DeleteGame.vue';
     const gameStore = useGameStore();
-    const games = gameStore.games;
 
     let deleteGameActive = ref(false);
-    const deleteGame = (index) => { deleteGameActive.value = true; console.log("index: " + index)}; 
+    //const deleteGame = (index) => { deleteGameActive.value = true; console.log("index: " + index)}; 
 
 </script>
 
 <template>
-    <div class="game-card font-size-small" v-for="(game, index) in games" :key="game.id" @click="gameStore.changeHomeList(true, index)">
+    <div class="game-card font-size-small" v-for="(game, index) in gameStore.games" :key="game.id" @click="gameStore.changeHomeList(true, index)">
         <!-- <div>{{players.points}}</div> -->
          <div class="grid-date">{{ game.date }}</div> 
         <ul >
-            <li class="card-players" v-for="player in games[game.id -1].players" :key="player.id">
+            <li class="card-players" v-for="player in gameStore.games[game.id -1].players" :key="player.id">
             <span class="grid-players">{{player.name}}</span>
             <span class="grid-points">{{player.points[game.rounds -1]}}</span>
             </li>
@@ -23,10 +22,7 @@
             <!-- <div type="button" class="grid-icon font-size-big" @click="deleteGame(index)">&#x2630;</div>            -->
     </div>
     <div v-if="deleteGameActive" class="delete-game-card">
-        <DeleteGame 
-            :deleteGameActive="deleteGameActive" 
-            @deleteGameActive="deleteGameActive = false"
-        />
+        <DeleteGame />
     </div>
     
 </template>
