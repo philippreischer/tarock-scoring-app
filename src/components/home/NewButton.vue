@@ -1,5 +1,4 @@
 <script setup>
-    import { ref } from 'vue';
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
 
@@ -7,10 +6,16 @@
 
 <template>
     <div class="plus-button-container" >
-        <button v-if="!gameStore.newGameActiv" class="button-plus " @click="gameStore.addNewGame()">
+        <button 
+        v-if="!gameStore.newGameActiv" 
+        class="button-plus " 
+        @click="gameStore.addNewGame(true)"
+        >
             <span class="plus">+</span>
         </button>
-        <button v-else-if="gameStore.newGameActiv" class="button-plus " @click="gameStore.openNewPlayerCard(true)">
+        <button v-else-if="gameStore.newGameActiv" 
+        class="button-plus "
+        @click="gameStore.openNewPlayerCard(true)">
             <span class="plus">+</span>
         </button>
     </div>  

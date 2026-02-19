@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import NewButton from './NewButton.vue';
 import GameList from './GameList.vue';
 import PlayerList from './PlayerList.vue';

@@ -1,8 +1,8 @@
 <script setup>
     import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
-    import ChangePlayer from './ChangePlayer.vue';
-    import NewPlayer from './NewPlayer.vue';
+    import ChangePlayer from './ChangePlayerPopUp.vue';
+    import NewPlayer from './NewPlayerPopUp.vue';
     const gameStore = useGameStore();
     
 
