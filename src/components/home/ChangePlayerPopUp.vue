@@ -1,27 +1,22 @@
 <script setup>
-    import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-    
-/*
-    const newName = ref('')
-    gameStore.games[gameStore.activeGameIndex].players[1].name
-    defineProps({
-        deleteGameActive: Boolean
-        })
-    const emit = defineEmits(['deletePlayerActive'])
- */   
-
+    console.log(gameStore.games[gameStore.activeGameIndex].players[gameStore.activePlayerIndex])
 </script>
 
 <template>
     <div class="delite-player-card">
         <h2 class="font-size-big">Name ändern?</h2>
-            <input v-model="newName" type="text" class="text-area" placeholder="">    
+            <input 
+            v-model="gameStore.games[gameStore.activeGameIndex].players[gameStore.activePlayerIndex].name" 
+            type="text" 
+            class="text-area" 
+            placeholder="">
+            <span class="save-button" @click="gameStore.closePopUp()">Speichern</span>    
         <h2 class="font-size-big">Spieler löschen?</h2>
         <div class="button-area">
             <span class="yes-button" @click="gameStore.removePlayer (gameStore.activePlayerIndex)">Ja</span>
-            <span class="no-button" @click="gameStore.changePlayerClose()">Nein</span>     
+            <span class="no-button" @click="gameStore.closePopUp()">Nein</span>     
         </div>      
     </div>
     
@@ -38,6 +33,10 @@
         display:flex;
         flex-direction: column;
         align-items: center;
+    }
+    .save-button{
+        margin: 5px 0 10px 0;
+        cursor: pointer;
     }
 
     .button-area{

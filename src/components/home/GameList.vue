@@ -16,7 +16,7 @@
         </div> 
         <ul >
             <li class="card-players" 
-            v-for="player in gameStore.games[game.id -1].players" 
+            v-for="player in gameStore.games[index].players" 
             :key="player.id">
                 <span class="grid-players">{{player.name}}</span>
                 <span class="grid-points">{{player.points[game.rounds -1]}}</span>

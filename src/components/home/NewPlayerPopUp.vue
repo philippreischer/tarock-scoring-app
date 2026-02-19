@@ -14,7 +14,7 @@
             <input v-model="newName" type="text" class="text-area" placeholder="Name eingeben">    
         <div class="button-area">
             <span class="yes-button" @click="gameStore.addNewPlayer(newName)">&#10003;</span>
-            <span class="no-button" @click="gameStore.openNewPlayerCard(false)">X</span>     
+            <span class="no-button" @click="gameStore.closePopUp()">X</span>     
         </div>      
     </div>
     

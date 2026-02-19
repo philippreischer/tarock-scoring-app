@@ -12,6 +12,7 @@ export const useGameStore = defineStore(`games`, {
         deleteGameActive: false,
         changePlayerActive: false,
         newPlayerActive: false,
+        pupUp: "",
         games:[
             { 
                 id: 1,
@@ -52,10 +53,6 @@ export const useGameStore = defineStore(`games`, {
             this.activeGameIndex = index; 
             this.newGameActiv = to;  
         }, 
-        openNewPlayerCard(to) {
-            console.log(to)
-            return this.newPlayerActive = to
-        },
         addNewGame() {
             let heute = new Date();
             this.games.push(
@@ -70,6 +67,11 @@ export const useGameStore = defineStore(`games`, {
             )
             this.changeHomeList(true, this.games.length -1)   
         },
+        openNewPlayerCard(to) {
+            console.log(to)
+            this.newPlayerActive = to;
+            this.pupUp = 'NewPlayerPopUp';
+        },
         addNewPlayer(newName) {  
             this.games[this.activeGameIndex].players.push(
                     { 
@@ -78,24 +80,41 @@ export const useGameStore = defineStore(`games`, {
                     points: []
                 }
             )
-            this.updateddate()    
-        },
-        updateddate() {
-            let heute = new Date()
-            this.games[this.activeGameIndex].date = heute.toLocaleDateString("de-DE")
-        },
-        removePlayer (index) {
-            this.games[this.activeGameIndex].players.splice(index, 1);
-            this.changePlayerClose();
+            this.updateddate()
+            this.closePopUp() 
         },
         changePlayerOpen(index){
             this.changePlayerActive = true; 
             console.log("index: " + index)
             this.activePlayerIndex = index;
             console.log("index P: " + this.activePlayerIndex)
+            this.pupUp = 'ChangePlayerPopUp';
         },
-        changePlayerClose(){
+        deleteGameOpen(){
+            this.deleteGameActive = true;
+            this.pupUp = 'DeleteGamePopUp';
+        },
+        deleteGame(index) {
+            console.log("Index: " + index)
+            console.log(this.games)
+            this.games.splice(index, 1);
+            this.closePopUp();
+            this.newGameActiv = false;
+        },
+        removePlayer(index) {
+            this.games[this.activeGameIndex].players.splice(index, 1);
+            this.closePopUp();
+        },
+        
+        closePopUp(){
+            this.deleteGameActive = false;
             this.changePlayerActive = false;
-        }
+            this.newPlayerActive = false;
+            this.pupUp = "";
+        },
+        updateddate() {
+            let heute = new Date()
+            this.games[this.activeGameIndex].date = heute.toLocaleDateString("de-DE")
+        },
     }   
 }); 

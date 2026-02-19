@@ -1,34 +1,39 @@
 <script setup>
-    import { ref } from 'vue'
     import  { useGameStore } from '@/stores/gameStore.js';
-    import ChangePlayer from './ChangePlayerPopUp.vue';
-    import NewPlayer from './NewPlayerPopUp.vue';
+    import ChangePlayerPopUp from './ChangePlayerPopUp.vue';
+    import NewPlayerPopUp from './NewPlayerPopUp.vue';
+    import DeleteGameButton from './DeleteGameButton.vue';
+    import DeleteGamePopUp from './DeleteGamePopUp.vue';
     const gameStore = useGameStore();
     
-
-  /*  const deletePlayer = (index) => { 
-        gameStore.deletePlayerActive = true; 
-        console.log("index: " + index)
-        gameStore.activePlayerIndex = index;
-        console.log("index P: " + gameStore.activePlayerIndex)
-    };
-  */
 </script>
 
 <template>
-    <div class="players-card" v-for="(player, index) in gameStore.games[gameStore.activeGameIndex].players" :key="player.id">
+    <DeleteGameButton />
+    <div class="players-card" 
+    v-for="(player, index) in gameStore.games[gameStore.activeGameIndex].players" 
+    :key="player.id"
+    >
         <ul >
             <li class="card-players" >
             <span class="grid-players">{{player.name}}</span>
             </li>
         </ul>
-        <div type="button" class="font-size-big" @click="gameStore.changePlayerOpen(index)">&#x2630;</div>          
+        <div 
+        type="button" 
+        class="font-size-big" 
+        @click="gameStore.changePlayerOpen(index)">
+            &#x2630;
+        </div>          
     </div>
-    <div v-if="gameStore.changePlayerActive" class="update-player-cards">
-        <ChangePlayer />
+    <div v-if="gameStore.changePlayerActive && gameStore.pupUp === 'ChangePlayerPopUp'" class="update-player-cards">
+        <ChangePlayerPopUp />
     </div>
-    <div v-else-if="gameStore.newPlayerActive" class="update-player-cards">
-        <NewPlayer />
+    <div v-else-if="gameStore.newPlayerActive && gameStore.pupUp === 'NewPlayerPopUp'" class="update-player-cards">
+        <NewPlayerPopUp />
+    </div>
+    <div v-else-if="gameStore.deleteGameActive && gameStore.pupUp === 'DeleteGamePopUp'" class="update-player-cards">
+        <DeleteGamePopUp />
     </div>
 </template>
 

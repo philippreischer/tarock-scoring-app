@@ -1,21 +1,14 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
-    const gameStore = useGameStore();
-    const games = gameStore.games;
-
-    defineProps({
-        deleteGameActive: Boolean
-        })
-    const emit = defineEmits(['deleteGameActive'])
-    
+    const gameStore = useGameStore();  
 </script>
 
 <template>
     <div class="delite-game-card">
             <h2 class="font-size-big">Spiel löschen?</h2>
             <div class="button-area">
-                <span class="yes-button">Ja</span>
-                <span class="no-button" @click="emit('deleteGameActive')">Nein</span>     
+                <span class="yes-button" @click="gameStore.deleteGame(gameStore.activeGameIndex)">Ja</span>
+                <span class="no-button" @click="gameStore.closePopUp()">Nein</span>     
             </div>       
     </div>
     
