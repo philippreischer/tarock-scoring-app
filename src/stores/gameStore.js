@@ -26,9 +26,9 @@ export const useGameStore = defineStore(`games`, {
                     {id: 2, name: "Philipp", points: [-1,2,3,4,5]},
                     {id: 3, name: "Peter", points: [-1,2,3,4,-1]},
                     {id: 4, name: "Arthur", points: [3,-2,3,4,5]},
-                    {id: 3, name: "Peter", points: [-1,2,3,4,-1]},
-                    {id: 4, name: "Arthur", points: [3,-2,3,4,5]},
-                    {id: 4, name: "Arthur", points: [3,-2,3,4,5]},
+                    {id: 5, name: "Tom", points: [-1,2,3,4,-1]},
+                    {id: 6, name: "Maria", points: [3,-2,3,4,5]},
+                    {id: 7, name: "Arno", points: [3,-2,3,4,5]},
                 ],
             },
             { 
@@ -42,7 +42,7 @@ export const useGameStore = defineStore(`games`, {
                     {id: 2, name: "Philipp", points: [-1,2,3,4,5,2,1,3]},
                     {id: 3, name: "Peter", points: [-1,2,3,4,-1,2,1,6]},
                     {id: 4, name: "Arthur", points: [3,-2,3,4,5,2,1,4]},
-                    {id: 4, name: "Maria", points: [3,-2,3,4,5,2,1,4]},
+                    {id: 5, name: "Maria", points: [3,-2,3,4,5,2,1,4]},
                 ],
             },     
         ],
@@ -123,6 +123,18 @@ export const useGameStore = defineStore(`games`, {
         deleteLastNumber() {
             this.currentGameValue = this.currentGameValue.slice(0, -1);
             console.log(this.currentGameValue);
-        } 
+        },
+        addnNewRound() {
+            this.games[this.activeGameIndex].players.forEach(player => {
+                this.games[this.activeGameIndex].players[player.id -1].points.push(Number(this.currentGameValue));
+                console.log("Index: " + (player.id -1));
+                console.log("Array" + player);
+            });
+            this.games[this.activeGameIndex].rounds++;
+            console.log("this.rounds:" + this.games[this.activeGameIndex].rounds);
+            this.games[this.activeGameIndex].gamePoints.push(Number(this.currentGameValue));
+            
+            this.updateddate()
+        },
     }   
 }); 

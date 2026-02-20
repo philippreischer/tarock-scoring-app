@@ -7,7 +7,7 @@
 <template>
     <div class="game-value-area">
             <span class="counter">{{gameStore.currentGameValue}}</span>
-            <span class="okay-button">&#10003;</span>       
+            <span class="okay-button" @click="gameStore.addnNewRound()">&#10003;</span>       
     </div>
     
 </template>
