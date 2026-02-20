@@ -13,6 +13,7 @@ export const useGameStore = defineStore(`games`, {
         changePlayerActive: false,
         newPlayerActive: false,
         pupUp: "",
+        currentGameValue:"",
         games:[
             { 
                 id: 1,
@@ -105,7 +106,6 @@ export const useGameStore = defineStore(`games`, {
             this.games[this.activeGameIndex].players.splice(index, 1);
             this.closePopUp();
         },
-        
         closePopUp(){
             this.deleteGameActive = false;
             this.changePlayerActive = false;
@@ -116,5 +116,13 @@ export const useGameStore = defineStore(`games`, {
             let heute = new Date()
             this.games[this.activeGameIndex].date = heute.toLocaleDateString("de-DE")
         },
+        addNumber(number) {
+            this.currentGameValue += number;
+            console.log(this.currentGameValue);
+        },
+        deleteLastNumber() {
+            this.currentGameValue = this.currentGameValue.slice(0, -1);
+            console.log(this.currentGameValue);
+        } 
     }   
 }); 

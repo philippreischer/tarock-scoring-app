@@ -1,13 +1,12 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-    const games = gameStore.games;
     
 </script>
 
 <template>
     <div class="game-value-area">
-            <span class="counter">0</span>
+            <span class="counter">{{gameStore.currentGameValue}}</span>
             <span class="okay-button">&#10003;</span>       
     </div>
     
