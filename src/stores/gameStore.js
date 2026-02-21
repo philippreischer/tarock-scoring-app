@@ -13,7 +13,11 @@ export const useGameStore = defineStore(`games`, {
         changePlayerActive: false,
         newPlayerActive: false,
         pupUp: "",
+        addDoubleActive: false,
         currentGameValue:"",
+
+        doubleRounds:0,
+        dealer: "",
         games:[
             { 
                 id: 1,
@@ -111,6 +115,9 @@ export const useGameStore = defineStore(`games`, {
             this.changePlayerActive = false;
             this.newPlayerActive = false;
             this.pupUp = "";
+        },
+        openAddDoublePopUp(){
+            this.addDoubleActive = !this.addDoubleActive;
         },
         updateddate() {
             let heute = new Date()

@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import Navigation from './components/Navigation.vue';
 
 </script>
