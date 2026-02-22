@@ -18,6 +18,8 @@ export const useGameStore = defineStore(`games`, {
         
 
         currentGameValue:"",
+        currentWin: 0,
+        currentLose: 0,
         games:[
             { 
                 id: 1,
@@ -30,13 +32,13 @@ export const useGameStore = defineStore(`games`, {
                 dealer: "",
                 gamePoints: [1,3,7,6,3],
                 players: [
-                    {id: 1, name: "Matthias", points: [-1,2,3,4,0]},
-                    {id: 2, name: "Philipp", points: [-1,2,3,4,5]},
-                    {id: 3, name: "Peter", points: [-1,2,3,4,-1]},
-                    {id: 4, name: "Arthur", points: [3,-2,3,4,5]},
-                    {id: 5, name: "Tom", points: [-1,2,3,4,-1]},
-                    {id: 6, name: "Maria", points: [3,-2,3,4,5]},
-                    {id: 7, name: "Arno", points: [3,-2,3,4,5]},
+                    {id: 1, name: "Matthias", status: 'notPlayed', points: [-1,2,3,4,0]},
+                    {id: 2, name: "Philipp", status: 'notPlayed', points: [-1,2,3,4,5]},
+                    {id: 3, name: "Peter", status: 'notPlayed', points: [-1,2,3,4,-1]},
+                    {id: 4, name: "Arthur", status: 'notPlayed', points: [3,-2,3,4,5]},
+                    {id: 5, name: "Tom", status: 'notPlayed', points: [-1,2,3,4,-1]},
+                    {id: 6, name: "Maria", status: 'notPlayed', points: [3,-2,3,4,5]},
+                    {id: 7, name: "Arno", status: 'notPlayed', points: [3,-2,3,4,5]},
                 ],
             },
             { 
@@ -50,11 +52,11 @@ export const useGameStore = defineStore(`games`, {
                 dealer: "",
                 gamePoints: [1,3,7,6,3,4,6,6],
                 players: [
-                    {id: 1, name: "Matthias", points: [-1,2,3,4,0,2,1,0]},
-                    {id: 2, name: "Philipp", points: [-1,2,3,4,5,2,1,3]},
-                    {id: 3, name: "Peter", points: [-1,2,3,4,-1,2,1,6]},
-                    {id: 4, name: "Arthur", points: [3,-2,3,4,5,2,1,4]},
-                    {id: 5, name: "Maria", points: [3,-2,3,4,5,2,1,4]},
+                    {id: 1, name: "Matthias", status: 'notPlayed', points: [-1,2,3,4,0,2,1,0]},
+                    {id: 2, name: "Philipp", status: 'notPlayed', points: [-1,2,3,4,5,2,1,3]},
+                    {id: 3, name: "Peter", status: 'notPlayed', points: [-1,2,3,4,-1,2,1,6]},
+                    {id: 4, name: "Arthur", status: 'notPlayed', points: [3,-2,3,4,5,2,1,4]},
+                    {id: 5, name: "Maria", status: 'notPlayed', points: [3,-2,3,4,5,2,1,4]},
                 ],
             },     
         ],
@@ -216,7 +218,6 @@ export const useGameStore = defineStore(`games`, {
                 this.games[this.activeGameIndex].dealerIndex++;
                 console.log("this.dealer " + this.games[this.activeGameIndex].dealer)
             }   
-        }
-        
+        }   
     }   
 }); 
