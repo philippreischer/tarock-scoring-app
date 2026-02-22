@@ -1,23 +1,36 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-    const games = gameStore.games;
     
 </script>
 
 <template>   
-        <tabel class="font-size-small">
+        <table class="font-size-small">
             <tr class="tabel-grid font-size-small">
-                
-                <th class="tabel-head" v-for="player in games[gameStore.activeGameIndex].players" :key="player.id">{{ player.name }}</th> 
-                <th class="tabel-head"></th>  
+                <th class="tabel-head" 
+                    v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
+                    :key="player.id">
+                        {{ player.name }}
+                </th> 
+                <th class="tabel-head">
+                    Punkte
+                </th>  
             </tr>
-            <tr class="tabel-grid" v-for="(game, index) in games[gameStore.activeGameIndex].rounds" :key="game.id">
-                
-                <td class="tabel-item color-gray" v-for="player in games[gameStore.activeGameIndex].players" :key="player.id">{{ player.points[index] }}</td>
-                <td class="tabel-item" >{{ games[gameStore.activeGameIndex].gamePoints[index] }}</td> 
+            <tr class="tabel-grid" 
+                v-for="(game, index) in gameStore.games[gameStore.activeGameIndex].rounds" 
+                :key="game.id"
+            >
+                <td class="tabel-item color-gray" 
+                    v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
+                    :key="player.id"
+                >
+                    {{ player.points[index] }}
+                </td>
+                <td class="tabel-item" >
+                    {{ gameStore.games[gameStore.activeGameIndex].gamePoints[index] }}
+                </td> 
             </tr>
-        </tabel>     
+        </table>     
 </template>
 
 <style scoped>
