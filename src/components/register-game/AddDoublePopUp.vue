@@ -1,13 +1,16 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
+    import { ref } from 'vue'
+
+    const rounds = ref() 
    
 </script>
 
 <template>
     <div class="delite-player-card">
         <h2 class="font-size-big">Doppelte Runden aktuell</h2>
-        <div class="rounds-number">{{ gameStore.doubleRounds }}</div>
+        <div class="rounds-number">{{ gameStore.games[gameStore.activeGameIndex].doubleRounds }}</div>
         <h2 class="font-size-big">Runden hinzufügen</h2>
             <input
             v-model="rounds" 

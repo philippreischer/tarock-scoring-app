@@ -15,16 +15,15 @@ export const useGameStore = defineStore(`games`, {
         pupUp: "",
         addDoubleActive: false,
         currentGameValue:"",
-
-        doubleRounds:0,
-        doubleRoundsActive: false,
-        dealer: "",
         games:[
             { 
                 id: 1,
-                active: true, 
                 date: '01.04.2026', 
                 rounds: 5,
+                doubleRounds:0,
+                doubleRoundsActive: false,
+                dealerIndex: 0,
+                dealer: "",
                 gamePoints: [1,3,7,6,3],
                 players: [
                     {id: 1, name: "Matthias", points: [-1,2,3,4,0]},
@@ -38,9 +37,12 @@ export const useGameStore = defineStore(`games`, {
             },
             { 
                 id: 2,
-                active: true, 
                 date: '06.04.2026', 
                 rounds: 8,
+                doubleRounds:0,
+                doubleRoundsActive: false,
+                dealerIndex: 0,
+                dealer: "",
                 gamePoints: [1,3,7,6,3,4,6,6],
                 players: [
                     {id: 1, name: "Matthias", points: [-1,2,3,4,0,2,1,0]},
@@ -64,9 +66,12 @@ export const useGameStore = defineStore(`games`, {
             this.games.push(
                     { 
                     id: this.games.length +1,
-                    active: true, 
                     date: heute.toLocaleDateString("de-DE"), 
                     rounds: 0,
+                    doubleRounds:0,
+                    doubleRoundsActive: false,
+                    dealerIndex: 0,
+                    dealer: "",
                     gamePoints: [],
                     players: []
                 }
@@ -87,6 +92,10 @@ export const useGameStore = defineStore(`games`, {
                 }
             )
             this.updateddate()
+            if(this.games[this.activeGameIndex].rounds === 0){
+                this.games[this.activeGameIndex].dealer = 
+                this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].players.length -1].name;
+            }
             this.closePopUp() 
         },
         changePlayerOpen(index){
@@ -121,16 +130,16 @@ export const useGameStore = defineStore(`games`, {
             this.addDoubleActive = !this.addDoubleActive;
         },
         addDoubleRounds(rounds) {
-            this.doubleRounds = rounds;
+            this.games[this.activeGameIndex].doubleRounds += Number(rounds);
             this.updateddate();
             this.openAddDoublePopUp();
         },
         checkDoubelRounds(){
-            if(this.doubleRounds > 0){
-                this.doubleRounds--;
-                this.doubleRoundsActive = true;
+            if(this.games[this.activeGameIndex].doubleRounds > 0){
+                this.games[this.activeGameIndex].doubleRounds--;
+                this.games[this.activeGameIndex].doubleRoundsActive = true;
             }   else {
-                this.doubleRoundsActive = false;
+                this.games[this.activeGameIndex].doubleRoundsActive = false;
             }
         },
         updateddate() {
@@ -149,7 +158,8 @@ export const useGameStore = defineStore(`games`, {
             this.checkDoubelRounds();
             this.games[this.activeGameIndex].players.forEach(player => {
                 this.games[this.activeGameIndex].players[player.id -1].points.push(
-                    this.doubleRoundsActive? (Number(this.currentGameValue) * 2) : Number(this.currentGameValue));
+                this.games[this.activeGameIndex].doubleRoundsActive? 
+                (Number(this.currentGameValue) * 2) : Number(this.currentGameValue));
                 
                 console.log("Index: " + (player.id -1));
                 console.log("Array" + player);
@@ -157,9 +167,32 @@ export const useGameStore = defineStore(`games`, {
             this.games[this.activeGameIndex].rounds++;
             console.log("this.rounds:" + this.games[this.activeGameIndex].rounds);
             this.games[this.activeGameIndex].gamePoints.push(
-                this.doubleRoundsActive? (Number(this.currentGameValue) * 2) : Number(this.currentGameValue));
-            
-            this.updateddate()
+                this.games[this.activeGameIndex].doubleRoundsActive? 
+                (Number(this.currentGameValue) * 2) : Number(this.currentGameValue)
+            );
+            this.setDealer();
+            this.updateddate();
+            this.currentGameValue = "";
+
         },
+        setDealer(){
+            
+            //console.log("Name! " + this.games[this.activeGameIndex].players[this.dealerIndex].name);
+            //this.dealerIndex++;
+            //console.log("this.games[this.activeGameIndex].players.length " + this.games[this.activeGameIndex].players.length)
+            if(this.games[this.activeGameIndex].dealerIndex < this.games[this.activeGameIndex].players.length){
+                this.games[this.activeGameIndex].dealer = this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].dealerIndex].name;
+                this.games[this.activeGameIndex].dealerIndex++;
+                console.log("this.dealer " + this.games[this.activeGameIndex].dealer)
+            } else {
+                this.games[this.activeGameIndex].dealerIndex = 0;
+                this.games[this.activeGameIndex].dealer = this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].dealerIndex].name;
+                this.games[this.activeGameIndex].dealerIndex++;
+                console.log("this.dealer " + this.games[this.activeGameIndex].dealer)
+            }
+            
+            
+        }
+        
     }   
 }); 

@@ -6,9 +6,9 @@
 
 <template>
     <div class="game-informations font-size-small">
-            <span>Runde: 22</span>
-            <span>Geber: Peter</span>
-            <span>Doppelte: {{gameStore.doubleRounds}}</span>       
+            <span>Runde: {{gameStore.games[gameStore.activeGameIndex].rounds}}</span>
+            <span>Geber: {{gameStore.games[gameStore.activeGameIndex].dealer}}</span>
+            <span>Doppelte: {{gameStore.games[gameStore.activeGameIndex].doubleRounds}}</span>       
     </div>
     
 </template>
