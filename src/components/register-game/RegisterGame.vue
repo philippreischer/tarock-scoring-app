@@ -21,13 +21,5 @@ import  { useGameStore } from '@/stores/gameStore.js';
 </template>
 
 <style scoped>
-    .update-player-cards{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99;
-        position:absolute;
-        top: 35vh;
-        left:50px;
-    }
+    
 </style>

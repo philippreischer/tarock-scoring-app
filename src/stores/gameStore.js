@@ -17,6 +17,7 @@ export const useGameStore = defineStore(`games`, {
         currentGameValue:"",
 
         doubleRounds:0,
+        doubleRoundsActive: false,
         dealer: "",
         games:[
             { 
@@ -119,6 +120,19 @@ export const useGameStore = defineStore(`games`, {
         openAddDoublePopUp(){
             this.addDoubleActive = !this.addDoubleActive;
         },
+        addDoubleRounds(rounds) {
+            this.doubleRounds = rounds;
+            this.updateddate();
+            this.openAddDoublePopUp();
+        },
+        checkDoubelRounds(){
+            if(this.doubleRounds > 0){
+                this.doubleRounds--;
+                this.doubleRoundsActive = true;
+            }   else {
+                this.doubleRoundsActive = false;
+            }
+        },
         updateddate() {
             let heute = new Date()
             this.games[this.activeGameIndex].date = heute.toLocaleDateString("de-DE")
@@ -132,14 +146,18 @@ export const useGameStore = defineStore(`games`, {
             console.log(this.currentGameValue);
         },
         addnNewRound() {
+            this.checkDoubelRounds();
             this.games[this.activeGameIndex].players.forEach(player => {
-                this.games[this.activeGameIndex].players[player.id -1].points.push(Number(this.currentGameValue));
+                this.games[this.activeGameIndex].players[player.id -1].points.push(
+                    this.doubleRoundsActive? (Number(this.currentGameValue) * 2) : Number(this.currentGameValue));
+                
                 console.log("Index: " + (player.id -1));
                 console.log("Array" + player);
             });
             this.games[this.activeGameIndex].rounds++;
             console.log("this.rounds:" + this.games[this.activeGameIndex].rounds);
-            this.games[this.activeGameIndex].gamePoints.push(Number(this.currentGameValue));
+            this.games[this.activeGameIndex].gamePoints.push(
+                this.doubleRoundsActive? (Number(this.currentGameValue) * 2) : Number(this.currentGameValue));
             
             this.updateddate()
         },

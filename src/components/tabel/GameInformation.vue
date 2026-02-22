@@ -1,14 +1,14 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-    const games = gameStore.games;
+
 </script>
 
 <template>
     <div class="game-informations font-size-small">
             <span>Runde: 22</span>
             <span>Geber: Peter</span>
-            <span>Doppelte: 0</span>       
+            <span>Doppelte: {{gameStore.doubleRounds}}</span>       
     </div>
     
 </template>

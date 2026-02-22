@@ -1,21 +1,21 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-    console.log(gameStore.games[gameStore.activeGameIndex].players[gameStore.activePlayerIndex])
+   
 </script>
 
 <template>
     <div class="delite-player-card">
         <h2 class="font-size-big">Doppelte Runden aktuell</h2>
-        <div>{{ gameStore.doubleRounds }}</div>
+        <div class="rounds-number">{{ gameStore.doubleRounds }}</div>
         <h2 class="font-size-big">Runden hinzufügen</h2>
-            <input 
-             
+            <input
+            v-model="rounds" 
             type="text" 
             class="text-area" 
             placeholder="">
-        <div class="button-area">
-            <span class="yes-button" @click="gameStore.removePlayer (gameStore.activePlayerIndex)">Ja</span>
+        <div>
+            <span class="yes-button" @click="gameStore.addDoubleRounds(rounds)">Ja</span>
             <span class="no-button" @click="gameStore.openAddDoublePopUp()">Nein</span>     
         </div>      
     </div>
@@ -35,8 +35,8 @@
         align-items: center;
     }
 
-    .button-area{
-       margin: 10px 0 0 0;
+    .rounds-number{
+       margin: 10px;
     }
     
     .yes-button{
@@ -52,7 +52,7 @@
     }
 
     .text-area{
-        margin: 10px 0 10px 0;
+        margin:  10px 0 10px 0;
         padding: 10px;
         max-width: 50px;
         background: #ffffff;
