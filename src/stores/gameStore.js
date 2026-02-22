@@ -169,10 +169,7 @@ export const useGameStore = defineStore(`games`, {
         addnNewRound() {
             this.checkDoubelRounds();
             this.games[this.activeGameIndex].players.forEach(player => {
-                this.games[this.activeGameIndex].players[player.id -1].points.push(
-                this.games[this.activeGameIndex].doubleRoundsActive? 
-                (Number(this.currentGameValue) * 2) : Number(this.currentGameValue));
-                
+                this.calculateGameValue(player);
                 console.log("Index: " + (player.id -1));
                 console.log("Array" + player);
             });
@@ -185,7 +182,44 @@ export const useGameStore = defineStore(`games`, {
             this.setDealer();
             this.updateddate();
             this.currentGameValue = "";
+            this.initPlayers();
 
+        },
+        calculateGameValue(player) {
+            if (player.status === "win" && this.currentWin === 1 && this.currentLose === 3){
+                this.pushPlayerValue(player, 3);
+            } else if (player.status === "lose" && this.currentWin === 3 && this.currentLose === 1){
+                this.pushPlayerValue(player, -3);
+            } else if (player.status === "win" && this.currentWin === 3 && this.currentLose === 1){
+                this.pushPlayerValue(player, 1);
+            } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 3){
+                this.pushPlayerValue(player, -1);
+            } else if (player.status === "win" && this.currentWin === 1 && this.currentLose === 2){
+                this.pushPlayerValue(player, 2);
+            } else if (player.status === "lose" && this.currentWin === 2 && this.currentLose === 1){
+                this.pushPlayerValue(player, -2);
+            } else if (player.status === "win" && this.currentWin === 2 && this.currentLose === 1){
+                this.pushPlayerValue(player, 1);
+            } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 2){
+                this.pushPlayerValue(player, -1);
+            } else if (player.status === "win" && this.currentWin === 2 && this.currentLose === 2){
+                this.pushPlayerValue(player, 1);
+            } else if (player.status === "lose" && this.currentWin === 2 && this.currentLose === 2){
+                this.pushPlayerValue(player, -1);
+            } else if (player.status === "win" && this.currentWin === 1 && this.currentLose === 1){
+                this.pushPlayerValue(player, 1);
+            } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 1){
+                this.pushPlayerValue(player, -1);
+            }   else {
+                this.pushPlayerValue(player, 0);   
+            }
+            
+        }, 
+        pushPlayerValue(player, multiplier){
+            this.games[this.activeGameIndex].players[player.id -1].points.push(
+                this.games[this.activeGameIndex].doubleRoundsActive? 
+                (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue) * Number(multiplier) * 2)) : 
+                Number(player.points[player.points.length -1]) + (Number(this.currentGameValue)) * Number(multiplier));
         },
         deleteLastEntry(){
             this.games[this.activeGameIndex].gamePoints.pop();
@@ -218,6 +252,17 @@ export const useGameStore = defineStore(`games`, {
                 this.games[this.activeGameIndex].dealerIndex++;
                 console.log("this.dealer " + this.games[this.activeGameIndex].dealer)
             }   
-        }   
+        },
+        initPlayers(){
+        this.games[this.activeGameIndex].players.forEach(player => {
+            if (!player.statusColor) {
+                player.statusColor = 'color-gray';
+                player.statusText = 'Nicht gespielt';
+                player.status = 'notPlayed';
+            }
+        })
+    }
+        
     }   
-}); 
+});
+

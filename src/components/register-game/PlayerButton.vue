@@ -2,8 +2,8 @@
     import { onMounted } from 'vue';
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-
-    onMounted(() => {
+/*
+    const initPlayers = () => {
         gameStore.games[gameStore.activeGameIndex].players.forEach(player => {
             if (!player.statusColor) {
                 player.statusColor = 'color-gray';
@@ -11,6 +11,10 @@
                 player.status = 'notPlayed';
             }
         })
+    }
+*/
+    onMounted(() => {
+        gameStore.initPlayers()
     })
 
 
