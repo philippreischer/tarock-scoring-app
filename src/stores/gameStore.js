@@ -182,7 +182,7 @@ export const useGameStore = defineStore(`games`, {
             this.setDealer();
             this.updateddate();
             this.currentGameValue = "";
-            this.initPlayers();
+            this.resetAllPlayers();
 
         },
         calculateGameValue(player) {
@@ -253,15 +253,14 @@ export const useGameStore = defineStore(`games`, {
                 console.log("this.dealer " + this.games[this.activeGameIndex].dealer)
             }   
         },
-        initPlayers(){
-        this.games[this.activeGameIndex].players.forEach(player => {
-            if (!player.statusColor) {
+        resetAllPlayers(){
+            this.games[this.activeGameIndex].players.forEach(player => {
                 player.statusColor = 'color-gray';
                 player.statusText = 'Nicht gespielt';
                 player.status = 'notPlayed';
-            }
-        })
-    }
+                
+            })
+        }
         
     }   
 });
