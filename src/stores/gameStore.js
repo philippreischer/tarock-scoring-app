@@ -14,6 +14,9 @@ export const useGameStore = defineStore(`games`, {
         newPlayerActive: false,
         pupUp: "",
         addDoubleActive: false,
+        deleteGamePopUpActive: false,
+        
+
         currentGameValue:"",
         games:[
             { 
@@ -141,6 +144,9 @@ export const useGameStore = defineStore(`games`, {
             }   else {
                 this.games[this.activeGameIndex].doubleRoundsActive = false;
             }
+        },
+        openDeleteEntryPopUp(){
+            this.deleteGamePopUpActive = !this.deleteGamePopUpActive;
         },
         updateddate() {
             let heute = new Date()
