@@ -5,7 +5,7 @@
 </script>
 
 <template>   
-        <table class="tabel font-size-small">
+        <table v-if="gameStore.games.length > 0" class="tabel font-size-small">
             <tr class="tabel-grid font-size-small">
                 <th class="tabel-head" 
                     v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
