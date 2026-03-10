@@ -168,9 +168,10 @@ export const useGameStore = defineStore(`games`, {
         },
         addnNewRound() {
             this.checkDoubelRounds();
-            this.games[this.activeGameIndex].players.forEach(player => {
-                this.calculateGameValue(player);
-                console.log("Index: " + (player.id -1));
+            console.log("this.activeGameIndex: " + this.activeGameIndex);
+            this.games[this.activeGameIndex].players.forEach((player, index) => {
+                this.calculateGameValue(player, index);
+                console.log("Index: " + (index));
                 console.log("Array" + player);
             });
             this.games[this.activeGameIndex].rounds++;
@@ -185,41 +186,42 @@ export const useGameStore = defineStore(`games`, {
             this.resetAllPlayers();
 
         },
-        calculateGameValue(player) {
+        calculateGameValue(player, index) {
             if (player.status === "win" && this.currentWin === 1 && this.currentLose === 3){
-                this.pushPlayerValue(player, 3);
+                this.pushPlayerValue(player , index, 3);
             } else if (player.status === "lose" && this.currentWin === 3 && this.currentLose === 1){
-                this.pushPlayerValue(player, -3);
+                this.pushPlayerValue(player , index, -3);
             } else if (player.status === "win" && this.currentWin === 3 && this.currentLose === 1){
-                this.pushPlayerValue(player, 1);
+                this.pushPlayerValue(player , index, 1);
             } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 3){
-                this.pushPlayerValue(player, -1);
+                this.pushPlayerValue(player , index, -1);
             } else if (player.status === "win" && this.currentWin === 1 && this.currentLose === 2){
-                this.pushPlayerValue(player, 2);
+                this.pushPlayerValue(player , index, 2);
             } else if (player.status === "lose" && this.currentWin === 2 && this.currentLose === 1){
-                this.pushPlayerValue(player, -2);
+                this.pushPlayerValue(player , index, -2);
             } else if (player.status === "win" && this.currentWin === 2 && this.currentLose === 1){
-                this.pushPlayerValue(player, 1);
+                this.pushPlayerValue(player , index, 1);
             } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 2){
-                this.pushPlayerValue(player, -1);
+                this.pushPlayerValue(player , index, -1);
             } else if (player.status === "win" && this.currentWin === 2 && this.currentLose === 2){
-                this.pushPlayerValue(player, 1);
+                this.pushPlayerValue(player , index, 1);
             } else if (player.status === "lose" && this.currentWin === 2 && this.currentLose === 2){
-                this.pushPlayerValue(player, -1);
+                this.pushPlayerValue(player , index, -1);
             } else if (player.status === "win" && this.currentWin === 1 && this.currentLose === 1){
-                this.pushPlayerValue(player, 1);
+                this.pushPlayerValue(player , index, 1);
             } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 1){
-                this.pushPlayerValue(player, -1);
+                this.pushPlayerValue(player , index, -1);
             }   else {
-                this.pushPlayerValue(player, 0);   
+                this.pushPlayerValue(player, index, 0);   
             }
             
         }, 
-        pushPlayerValue(player, multiplier){
-            this.games[this.activeGameIndex].players[player.id -1].points.push(
+        pushPlayerValue(player, index, multiplier){
+            this.games[this.activeGameIndex].players[index].points.push(
                 this.games[this.activeGameIndex].doubleRoundsActive? 
                 (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue) * Number(multiplier) * 2)) : 
-                Number(player.points[player.points.length -1]) + (Number(this.currentGameValue)) * Number(multiplier));
+                (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue)) * Number(multiplier))
+            );
         },
         deleteLastEntry(){
             this.games[this.activeGameIndex].gamePoints.pop();
@@ -259,7 +261,9 @@ export const useGameStore = defineStore(`games`, {
                 player.statusColor = 'color-gray';
                 player.statusText = 'Nicht gespielt';
                 player.status = 'notPlayed';
-                
+                this.currentWin = 0;
+                this.currentLose = 0;
+
             })
         }
         

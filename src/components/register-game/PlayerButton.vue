@@ -8,7 +8,7 @@
     })
 
 
-    const changeStatus = (player) => {
+    const changeStatus = player => {
         console.log("player.status: " + player.status)
         if (player.status === 'notPlayed') {
             player.statusColor = 'color-green';
@@ -40,7 +40,7 @@
         <div class="player-card" 
             v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
             :key="player.id"
-            @click="changeStatus(player)"
+            @click="changeStatus(player, index)"
             >
             <!-- <div>{{players.points}}</div> -->
             <span class="">{{player.name}}</span>
