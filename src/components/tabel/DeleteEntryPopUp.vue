@@ -1,8 +1,8 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
-    const gameStore = useGameStore();
     import { ref } from 'vue'
 
+    const gameStore = useGameStore();
     const rounds = ref() 
    
 </script>

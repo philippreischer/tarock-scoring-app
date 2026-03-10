@@ -223,8 +223,9 @@ export const useGameStore = defineStore(`games`, {
         },
         deleteLastEntry(){
             this.games[this.activeGameIndex].gamePoints.pop();
-            this.games[this.activeGameIndex].players.forEach(player => {
-                this.games[this.activeGameIndex].players[player.id -1].points.pop();
+            this.games[this.activeGameIndex].players.forEach((player, index) => {
+                this.games[this.activeGameIndex].players[index].points.pop();
+                console.log("id " + this.games[this.activeGameIndex].players[player.id -1])
             });
             if(this.games[this.activeGameIndex].dealerIndex > 1) {
                 this.games[this.activeGameIndex].dealerIndex = this.games[this.activeGameIndex].dealerIndex -2;
