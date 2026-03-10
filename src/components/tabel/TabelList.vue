@@ -5,7 +5,7 @@
 </script>
 
 <template>   
-        <table class="font-size-small">
+        <table class="tabel font-size-small">
             <tr class="tabel-grid font-size-small">
                 <th class="tabel-head" 
                     v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
@@ -34,20 +34,30 @@
 </template>
 
 <style scoped>
+    .tabel {
+        width: 100%;
+    }
+
     th{
        font-weight: normal; 
     }
 
-    .tabel-grid{
+    .tabel-grid {
         display: grid;
         grid-auto-flow: column;
         margin: 8px 10px;
+    }
+
+    .tabel-grid {
+        display: flex;
+        justify-content: space-between;
+        
         
     }
 
-    .tabel-head{
-        width: 45px;
-        height: 45px;
+    .tabel-head {
+        flex: 1 1 50px;
+        min-height: 50px;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         display: flex;
@@ -57,9 +67,9 @@
     }
 
  
-    .tabel-item{
-        width: 45px;
-        height: 45px;
+    .tabel-item {
+        flex: 1 1 50px;
+        min-height: 50px;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         display: flex;

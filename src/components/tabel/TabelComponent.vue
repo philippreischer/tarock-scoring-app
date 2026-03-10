@@ -4,8 +4,8 @@ import DeleteEntryPopUp from './DeleteEntryPopUp.vue';
 import GameInformation from './GameInformation.vue';
 import TableList from './TabelList.vue';
 import  { useGameStore } from '@/stores/gameStore.js';
+    
     const gameStore = useGameStore();
-
 
 </script>
 
