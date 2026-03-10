@@ -12,7 +12,7 @@
                     :key="player.id">
                         {{ player.name }}
                 </th> 
-                <th class="tabel-head">
+                <th class="tabel-head color-gray">
                     Punkte
                 </th>  
             </tr>

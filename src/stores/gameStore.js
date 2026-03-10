@@ -20,7 +20,7 @@ export const useGameStore = defineStore(`games`, {
         currentGameValue:"",
         currentWin: 0,
         currentLose: 0,
-        games:[
+        games:[/*
             { 
                 id: 1,
                 date: '01.04.2026', 
@@ -58,7 +58,7 @@ export const useGameStore = defineStore(`games`, {
                     {id: 4, name: "Arthur", status: 'notPlayed', points: [3,-2,3,4,5,2,1,4]},
                     {id: 5, name: "Maria", status: 'notPlayed', points: [3,-2,3,4,5,2,1,4]},
                 ],
-            },     
+            },*/   
         ],
     }),
     actions: {
@@ -103,6 +103,11 @@ export const useGameStore = defineStore(`games`, {
             if(this.games[this.activeGameIndex].rounds === 0){
                 this.games[this.activeGameIndex].dealer = 
                 this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].players.length -1].name;
+            }
+            if(this.games[this.activeGameIndex].rounds !== 0){
+                for (let i = 0; i < this.games[this.activeGameIndex].rounds; i++){
+                    this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].players.length -1].points.push(0); 
+                }
             }
             this.closePopUp() 
         },
@@ -217,11 +222,19 @@ export const useGameStore = defineStore(`games`, {
             
         }, 
         pushPlayerValue(player, index, multiplier){
-            this.games[this.activeGameIndex].players[index].points.push(
-                this.games[this.activeGameIndex].doubleRoundsActive? 
-                (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue) * Number(multiplier) * 2)) : 
-                (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue)) * Number(multiplier))
-            );
+            if (this.games[this.activeGameIndex].rounds === 0){
+                this.games[this.activeGameIndex].players[index].points.push( 
+                    (Number(this.currentGameValue)) * Number(multiplier)
+                    
+                );
+            } else {
+                this.games[this.activeGameIndex].players[index].points.push(
+                    this.games[this.activeGameIndex].doubleRoundsActive? 
+                    (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue) * Number(multiplier) * 2)) : 
+                    (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue)) * Number(multiplier))
+                
+                );
+            }
         },
         deleteLastEntry(){
             this.games[this.activeGameIndex].gamePoints.pop();
