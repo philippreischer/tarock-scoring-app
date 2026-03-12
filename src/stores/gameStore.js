@@ -61,6 +61,7 @@ export const useGameStore = defineStore(`games`, {
             },*/   
         ],
     }),
+    persist: true,
     actions: {
         changeHomeList(to, index) {
             console.log(to)
