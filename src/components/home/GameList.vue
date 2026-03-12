@@ -1,12 +1,16 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
-    import DeleteGame from './DeleteGamePopUp.vue';
     const gameStore = useGameStore();
 
 </script>
 
 <template>
-    <div class="game-card font-size-small" 
+    <h1 v-if="gameStore.games.length === 0" class="font-size-large default-text">
+        <span>Erstelle eint</span>
+        <span>neues Spiel</span>
+    
+    </h1>
+    <div  class="game-card font-size-small" 
         v-for="(game, index) in gameStore.games" 
         :key="game.id" 
         @click="gameStore.changeHomeList(true, index)"
@@ -26,6 +30,12 @@
 </template>
 
 <style scoped>
+    .default-text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
     .game-card{
         margin:20px;
         padding: 15px;

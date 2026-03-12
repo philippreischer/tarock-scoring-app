@@ -10,6 +10,12 @@
 
 <template>
     <DeleteGameButton />
+    <h1 v-if="gameStore.games[gameStore.activeGameIndex].players.length === 0" class="font-size-large default-text">
+        <span>Trag zuerst</span>
+        <span>die Vorhand ein</span>
+    
+    </h1>
+    
     <div class="players-card" 
     v-for="(player, index) in gameStore.games[gameStore.activeGameIndex].players" 
     :key="player.id"
@@ -35,9 +41,18 @@
     <div v-else-if="gameStore.deleteGameActive && gameStore.pupUp === 'DeleteGamePopUp'" class="update-player-cards">
         <DeleteGamePopUp />
     </div>
+
 </template>
 
 <style scoped>
+    .default-text{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
     .players-card{
         margin:20px;
         padding: 15px;

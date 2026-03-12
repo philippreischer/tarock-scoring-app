@@ -36,7 +36,7 @@
 </script>
 
 <template>
-    <div class="player-grid">
+    <div v-if="gameStore.games.length > 0" class="player-grid">
         <div class="player-card" 
             v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
             :key="player.id"

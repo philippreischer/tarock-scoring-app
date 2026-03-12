@@ -270,6 +270,9 @@ export const useGameStore = defineStore(`games`, {
             }   
         },
         resetAllPlayers(){
+            if(this.games.length === 0){
+                return
+            }
             this.games[this.activeGameIndex].players.forEach(player => {
                 player.statusColor = 'color-gray';
                 player.statusText = 'Nicht gespielt';
