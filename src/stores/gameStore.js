@@ -11,7 +11,6 @@ export const useGameStore = defineStore(`games`, {
         //PopUps
         deleteGameActive: false,
         changePlayerActive: false,
-        newPlayerActive: false,
         pupUp: "",
         addDoubleActive: false,
         deleteGamePopUpActive: false,
