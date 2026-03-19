@@ -5,30 +5,36 @@
 </script>
 
 <template>
-    <div class="plus-button-container" >
-        <button 
+    <div class="button-container font-size-medium" >
+        <div 
         v-if="!gameStore.newGameActiv" 
-        class="button-plus " 
+        class="button font-size-medium" 
         @click="gameStore.addNewGame(true)"
         >
-            <span class="plus">+</span>
-        </button>
-        <button v-else-if="gameStore.newGameActiv" 
-        class="button-plus "
+            <span>Neues Spiel</span>
+        </div>
+
+
+
+        <div v-else-if="gameStore.newGameActiv" 
+        class="button font-size-medium"
         @click="gameStore.openNewPlayerCard(true)">
-            <span class="plus">+</span>
-        </button>
+            <span>Neuer Spiel</span>
+        </div>
     </div>  
 </template>
 
 <style scoped>
 
-.plus-button-container{
+.button-container{
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
 }
-
+/*
 .button-plus {
     border-radius: 10Px;
     background-color: #e9e9ed;
@@ -56,6 +62,25 @@
     font-size: 40px;
     line-height: 1;
 }
+*/
+    .button {
+        margin:20px;
+        padding: 15px;
+        width: 90%;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+        position: absolute;
+        bottom: 0;
+    }
 
-
+    .button:active {
+        transform: scale(0.95);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
 </style>

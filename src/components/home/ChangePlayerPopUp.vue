@@ -39,6 +39,7 @@
         cursor: pointer;
     }
 
+
     .button-area{
        margin: 10px 0 0 0;
     }

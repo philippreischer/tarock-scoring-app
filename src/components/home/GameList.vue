@@ -15,7 +15,7 @@
 </script>
 
 <template>
-    <div v-if="isReady">
+    <!--<div v-if="isReady">-->
         <h1 v-if="gameStore.games.length === 0" class="font-size-large default-text">
             <span>Erstelle eint</span>
             <span>neues Spiel</span>
@@ -34,15 +34,15 @@
                 v-for="player in gameStore.games[index].players" 
                 :key="player.id">
                     <span class="grid-players">{{player.name}}</span>
-                    <!--<span class="grid-points">{{player.points[game.rounds -1]}}</span>-->
-                    <span class="grid-points">{{player.points?.[game.rounds -1] ?? 0}}</span>
+                    <span class="grid-points">{{player.points[game.rounds -1]}}</span>
+                    <!--<span class="grid-points">{{player.points?.[game.rounds -1] ?? 0}}</span>-->
                 </li>
             </ul>        
         </div>
-    </div> 
+    <!--</div> 
     <div v-else>
         Lade...
-    </div>  
+    </div>-->  
 </template>
 
 <style scoped>
@@ -61,6 +61,11 @@
         cursor: pointer;
         display:flex;
         align-items: center;
+    }
+
+    .game-card:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
     
     .card-players{

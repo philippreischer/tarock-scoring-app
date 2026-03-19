@@ -18,7 +18,7 @@
 
 <style scoped>
 
-    .container{
+    .container {
         display: flex; 
         flex-direction: row-reverse;      
         
@@ -37,11 +37,17 @@
         justify-content: center;
         
     }
-    .button:hover{
+    .button:hover {
         color: #ff0000;
     }
+
+    .button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
     
-    .card-players{
+    
+    .card-players {
         margin: 0 15px;
         list-style: none;
         display:flex;

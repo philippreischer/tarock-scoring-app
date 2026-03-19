@@ -59,9 +59,8 @@
         margin: 10px 0 0 10px;
     }
 
-
     .player-card{
-        margin: 10px 10px 20px 10px;
+        margin: 10px 0 20px 5px;
         padding: 15px;
         width: 170px;
         height: 80px;

@@ -19,18 +19,19 @@
     <div class="players-card" 
     v-for="(player, index) in gameStore.games[gameStore.activeGameIndex].players" 
     :key="player.id"
+    @click="gameStore.changePlayerOpen(index)"
     >
         <ul >
             <li class="card-players" >
             <span class="grid-players">{{player.name}}</span>
             </li>
         </ul>
-        <div 
+        <!--<div 
         type="button" 
         class="font-size-big" 
         @click="gameStore.changePlayerOpen(index)">
             &#x2630;
-        </div>          
+        </div> -->         
     </div>
     <div v-if="gameStore.changePlayerActive && gameStore.pupUp === 'ChangePlayerPopUp'" class="update-player-cards">
         <ChangePlayerPopUp />
@@ -45,7 +46,7 @@
 </template>
 
 <style scoped>
-    .default-text{
+    .default-text {
         margin-top: 20px;
         display: flex;
         flex-direction: column;
@@ -53,7 +54,7 @@
 
     }
 
-    .players-card{
+    .players-card {
         margin:20px;
         padding: 15px;
         background: #ffffff;
@@ -64,8 +65,13 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    .players-card:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
     
-    .card-players{
+    .card-players {
         margin: 0 15px;
         list-style: none;
         display:flex;
