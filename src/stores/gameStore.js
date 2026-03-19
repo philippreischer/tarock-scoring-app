@@ -148,6 +148,12 @@ export const useGameStore = defineStore(`games`, {
             this.updateddate();
             this.openAddDoublePopUp();
         },
+        updateDoubleRounds(rounds) {
+            this.games[this.activeGameIndex].doubleRounds = Number(rounds);
+            this.games[this.activeGameIndex].maxDoubleRounds = this.games[this.activeGameIndex].doubleRounds;
+            this.updateddate();
+            this.openAddDoublePopUp();
+        },
         checkDoubelRounds(){
             if(this.games[this.activeGameIndex].doubleRounds > 0){
                 this.games[this.activeGameIndex].doubleRounds--;

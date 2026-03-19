@@ -3,7 +3,8 @@
     const gameStore = useGameStore();
     import { ref } from 'vue'
 
-    const rounds = ref() 
+    const rounds = ref();
+    const newRounds = ref();
    
 </script>
 
@@ -17,10 +18,20 @@
             type="text" 
             class="text-area" 
             placeholder="">
-        <div>
+        <div class="button-area">
             <span class="yes-button" @click="gameStore.addDoubleRounds(rounds)">Ja</span>
             <span class="no-button" @click="gameStore.openAddDoublePopUp()">Nein</span>     
-        </div>      
+        </div> 
+        <h2 class="font-size-big">Runden ändern</h2>
+            <input
+            v-model="newRounds" 
+            type="text" 
+            class="text-area" 
+            placeholder="">
+        <div class="button-area">
+            <span class="yes-button" @click="gameStore.updateDoubleRounds(newRounds)">Ja</span>
+            <span class="no-button" @click="gameStore.openAddDoublePopUp()">Nein</span>     
+        </div>         
     </div>
     
 </template>
@@ -36,6 +47,10 @@
         display:flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .button-area{
+       margin: 10px 0 10px 0;
     }
 
     .rounds-number{
@@ -66,7 +81,6 @@
         align-items: center;
         justify-content: center;
         align-self: center;
-        
     }
 
 </style>
