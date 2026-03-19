@@ -177,7 +177,7 @@ export const useGameStore = defineStore(`games`, {
             this.currentGameValue = this.currentGameValue.slice(0, -1);
             console.log(this.currentGameValue);
         },
-        addnNewRound() {
+        addNewRound() {
             this.checkDoubelRounds();
             console.log("this.activeGameIndex: " + this.activeGameIndex);
             this.games[this.activeGameIndex].players.forEach((player, index) => {
@@ -285,8 +285,9 @@ export const useGameStore = defineStore(`games`, {
                 player.status = 'notPlayed';
                 this.currentWin = 0;
                 this.currentLose = 0;
-
+                
             })
+
         }
         
     }   

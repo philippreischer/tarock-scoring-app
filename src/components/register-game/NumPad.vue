@@ -7,18 +7,18 @@
 
 <template>
     <div class="num-grid">
-            <div type="button" class="num" @click="gameStore.addNumber('1')">1</div>
-            <div type="button" class="num" @click="gameStore.addNumber('2')">2</div>
-            <div type="button" class="num" @click="gameStore.addNumber('3')">3</div>
-            <div type="button" class="num" @click="gameStore.addNumber('4')">4</div>
-            <div type="button" class="num" @click="gameStore.addNumber('5')">5</div>
-            <div type="button" class="num" @click="gameStore.addNumber('6')">6</div>
-            <div type="button" class="num" @click="gameStore.addNumber('7')">7</div>
-            <div type="button" class="num" @click="gameStore.addNumber('8')">8</div>
-            <div type="button" class="num" @click="gameStore.addNumber('9')">9</div>
-            <div type="button" class=""></div>
-            <div type="button" class="num" @click="gameStore.addNumber('0')">0</div>
-            <div type="button" class="num" @click="gameStore.deleteLastNumber()">C</div>   
+        <div type="button" class="num" @click="gameStore.addNumber('1')">1</div>
+        <div type="button" class="num" @click="gameStore.addNumber('2')">2</div>
+        <div type="button" class="num" @click="gameStore.addNumber('3')">3</div>
+        <div type="button" class="num" @click="gameStore.addNumber('4')">4</div>
+        <div type="button" class="num" @click="gameStore.addNumber('5')">5</div>
+        <div type="button" class="num" @click="gameStore.addNumber('6')">6</div>
+        <div type="button" class="num" @click="gameStore.addNumber('7')">7</div>
+        <div type="button" class="num" @click="gameStore.addNumber('8')">8</div>
+        <div type="button" class="num" @click="gameStore.addNumber('9')">9</div>
+        <div type="button" class=""></div>
+        <div type="button" class="num" @click="gameStore.addNumber('0')">0</div>
+        <div type="button" class="num" @click="gameStore.deleteLastNumber()">C</div>   
     </div>
     
 </template>

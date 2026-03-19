@@ -1,13 +1,23 @@
 <script setup>
+    import { useRouter } from "vue-router"
     import  { useGameStore } from '@/stores/gameStore.js';
+
+    const router = useRouter()
     const gameStore = useGameStore();
+
+    function handleClick() {
+        gameStore.addNewRound();
+        setTimeout(() => {
+        router.push("/tabelle")
+        }, 300)
+    }
     
 </script>
 
 <template>
     <div class="game-value-area">
             <span class="counter">{{gameStore.currentGameValue}}</span>
-            <span class="okay-button" @click="gameStore.addnNewRound()">&#10003;</span>       
+            <span class="okay-button" @click="handleClick()">&#10003;</span>       
     </div>
     
 </template>
