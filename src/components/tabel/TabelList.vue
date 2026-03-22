@@ -1,6 +1,30 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
+    import { ref } from 'vue';
     const gameStore = useGameStore();
+
+
+    const status= ref('color-green')
+/*
+    const statusColor = computed(() => ({
+        'color-gray': status.value === 'notPlayed',
+        'color-green': status.value === 'win',
+        'color-red': status.value === 'lose'
+    }))
+
+
+    const statusColor = player => {
+        if (player.status === 'notPlayed') {
+            return 'color-gray'; 
+        } else if (player.status === 'win') {
+            return 'color-green';
+        } else if (player.status === 'lose') {
+            return 'color-red';
+        }
+        console.log(statusColor);
+    }
+*/
+
     
 </script>
 
@@ -18,12 +42,14 @@
             </tr>
             <tr class="tabel-grid" 
                 v-for="(game, index) in gameStore.games[gameStore.activeGameIndex].rounds" 
-                :key="game.id"
+                :key="index"
             >
-                <td class="tabel-item color-gray" 
-                    v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
-                    :key="player.id"
+                <td class="tabel-item "
+                v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
+                :key="player.id"
+                :class="player.colorList[index]"
                 >
+                <!--{{ player.colorList[index] }}-->
                     {{ player.points[index] }}
                 </td>
                 <td class="tabel-item" >

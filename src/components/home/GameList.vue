@@ -34,8 +34,8 @@
                 v-for="player in gameStore.games[index].players" 
                 :key="player.id">
                     <span class="grid-players">{{player.name}}</span>
-                    <span class="grid-points">{{player.points[game.rounds -1]}}</span>
-                    <!--<span class="grid-points">{{player.points?.[game.rounds -1] ?? 0}}</span>-->
+                    <!--<span class="grid-points">{{player.points[game.rounds -1]}}</span>-->
+                    <span class="grid-points">{{player.points?.[game.rounds -1] ?? 0}}</span>
                 </li>
             </ul>        
         </div>

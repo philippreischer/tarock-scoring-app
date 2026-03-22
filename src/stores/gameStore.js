@@ -95,8 +95,9 @@ export const useGameStore = defineStore(`games`, {
             this.games[this.activeGameIndex].players.push(
                     { 
                     id: this.games[this.activeGameIndex].players.length +1, 
-                    name: newName, 
-                    points: []
+                    name: newName,  
+                    points: [],
+                    colorList: [],
                 }
             )
             this.updateddate()
@@ -107,9 +108,11 @@ export const useGameStore = defineStore(`games`, {
             if(this.games[this.activeGameIndex].rounds !== 0){
                 for (let i = 0; i < this.games[this.activeGameIndex].rounds; i++){
                     this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].players.length -1].points.push(0); 
+                    this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].players.length -1].colorList.push('color-gray');
                 }
             }
-            this.closePopUp() 
+            this.closePopUp()
+            console.log("Player: " + this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].players.length -1].status) 
         },
         changePlayerOpen(index){
             this.changePlayerActive = true; 
@@ -199,40 +202,50 @@ export const useGameStore = defineStore(`games`, {
         },
         calculateGameValue(player, index) {
             if (player.status === "win" && this.currentWin === 1 && this.currentLose === 3){
-                this.pushPlayerValue(player , index, 3);
+                this.pushPlayerValue(player , index, 3, 'color-green');
             } else if (player.status === "lose" && this.currentWin === 3 && this.currentLose === 1){
-                this.pushPlayerValue(player , index, -3);
+                this.pushPlayerValue(player , index, -3, 'color-red');
             } else if (player.status === "win" && this.currentWin === 3 && this.currentLose === 1){
-                this.pushPlayerValue(player , index, 1);
+                this.pushPlayerValue(player , index, 1, 'color-green');
             } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 3){
-                this.pushPlayerValue(player , index, -1);
+                this.pushPlayerValue(player , index, -1, 'color-red');
             } else if (player.status === "win" && this.currentWin === 1 && this.currentLose === 2){
-                this.pushPlayerValue(player , index, 2);
+                this.pushPlayerValue(player , index, 2, 'color-green');
             } else if (player.status === "lose" && this.currentWin === 2 && this.currentLose === 1){
-                this.pushPlayerValue(player , index, -2);
+                this.pushPlayerValue(player , index, -2, 'color-red');
             } else if (player.status === "win" && this.currentWin === 2 && this.currentLose === 1){
-                this.pushPlayerValue(player , index, 1);
+                this.pushPlayerValue(player , index, 1, 'color-green');
             } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 2){
-                this.pushPlayerValue(player , index, -1);
+                this.pushPlayerValue(player , index, -1, 'color-red');
             } else if (player.status === "win" && this.currentWin === 2 && this.currentLose === 2){
-                this.pushPlayerValue(player , index, 1);
+                this.pushPlayerValue(player , index, 1, 'color-green');
             } else if (player.status === "lose" && this.currentWin === 2 && this.currentLose === 2){
-                this.pushPlayerValue(player , index, -1);
+                this.pushPlayerValue(player , index, -1, 'color-red');
             } else if (player.status === "win" && this.currentWin === 1 && this.currentLose === 1){
-                this.pushPlayerValue(player , index, 1);
+                this.pushPlayerValue(player , index, 1, 'color-green');
             } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 1){
-                this.pushPlayerValue(player , index, -1);
+                this.pushPlayerValue(player , index, -1, 'color-red');
             }   else {
-                this.pushPlayerValue(player, index, 0);   
+                this.pushPlayerValue(player, index, 0, 'color-gray');   
             }
             
         }, 
-        pushPlayerValue(player, index, multiplier){
+        pushPlayerValue(player, index, multiplier, color){
+            //if (!Array.isArray(this.games[this.activeGameIndex].players[index].colorList)) {
+            //    this.games[this.activeGameIndex].players[index].statusColor = []
+            //}
+
+
+
             if (this.games[this.activeGameIndex].rounds === 0){
                 this.games[this.activeGameIndex].players[index].points.push( 
                     (Number(this.currentGameValue)) * Number(multiplier)
                     
                 );
+                this.games[this.activeGameIndex].players[index].colorList.push(color);
+                console.log("ColorList index"+ index + ": " + this.games[this.activeGameIndex].players[index].colorList);
+                //this.games[this.activeGameIndex].players[index].statusColor = color;
+                //console.log("ColorTest2 " + this.games[this.activeGameIndex].players[index].statusColor);
             } else {
                 this.games[this.activeGameIndex].players[index].points.push(
                     this.games[this.activeGameIndex].doubleRoundsActive? 
@@ -240,12 +253,18 @@ export const useGameStore = defineStore(`games`, {
                     (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue)) * Number(multiplier))
                 
                 );
+                this.games[this.activeGameIndex].players[index].colorList.push(color);
+                //console.log("ColorTest1 " + this.games[this.activeGameIndex].players[index].statusColor);
+                //this.games[this.activeGameIndex].players[index].statusColor = color;
+                //console.log("ColorTest2 " + this.games[this.activeGameIndex].players[index].statusColor);
+                console.log("ColorList index"+ index + ": " + this.games[this.activeGameIndex].players[index].colorList);
             }
         },
         deleteLastEntry(){
             this.games[this.activeGameIndex].gamePoints.pop();
             this.games[this.activeGameIndex].players.forEach((player, index) => {
                 this.games[this.activeGameIndex].players[index].points.pop();
+                this.games[this.activeGameIndex].players[index].colorList.pop();
                 console.log("id " + this.games[this.activeGameIndex].players[player.id -1])
             });
             if(this.games[this.activeGameIndex].dealerIndex > 1) {

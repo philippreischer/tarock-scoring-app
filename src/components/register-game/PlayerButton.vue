@@ -29,6 +29,7 @@
         }
         console.log("player.status: " + player.status)
         console.log("Ob: " + gameStore.games[gameStore.activeGameIndex].players[1].status)
+        console.log("Ob: " + gameStore.games[gameStore.activeGameIndex].players[1].statusColor)
         console.log("gameStore.currentWin: " + gameStore.currentWin)
         console.log("gameStore.currentLose: " + gameStore.currentLose)
     }
