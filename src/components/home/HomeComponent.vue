@@ -8,15 +8,15 @@
     
     const router = useRouter()
     const gameStore = useGameStore();
-    const isReady = ref(false);
+    //const isReady = ref(false);
 
     onMounted(() => {
+        gameStore.changeHomeList(false, 0)
         //setTimeout(() => {
         //isReady.value = true
-        router.push("/tabelle")
-        console.log("Test R1")
-        router.push("/")
-        console.log("Test R2")
+        //router.push("/tabelle")
+        //console.log("Test R1")
+        
         //}, 50)
         
     })   

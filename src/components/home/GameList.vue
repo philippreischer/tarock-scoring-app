@@ -3,13 +3,13 @@
     import  { useGameStore } from '@/stores/gameStore.js';
     
     const gameStore = useGameStore();
-    const isReady = ref(false);
+    //const isReady = ref(false);
 
-    onMounted(() => {
-        setTimeout(() => {
-        isReady.value = true
-        }, 50)
-    })
+    //onMounted(() => {
+    //    setTimeout(() => {
+    //    isReady.value = true
+    //    }, 50)
+    //})
 
 
 </script>

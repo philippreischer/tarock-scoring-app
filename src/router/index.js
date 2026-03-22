@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue';
 import GameCounterView from '@/views/RegisterGameView.vue';
 import TableView from '@/views/TabelView.vue';
@@ -23,7 +23,8 @@ const routes = [
 
 const router = createRouter({
     routes,
-    history: createWebHistory()
+    history: createWebHashHistory(),
+    //history: createWebHistory()
 });
 
 
