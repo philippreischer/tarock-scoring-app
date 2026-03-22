@@ -1,6 +1,8 @@
 <script setup>
+import  { useGameStore } from '@/stores/gameStore.js';
 import Navigation from './components/Navigation.vue';
 
+const gameStore = useGameStore();
 </script>
 
 <template>
@@ -8,6 +10,3 @@ import Navigation from './components/Navigation.vue';
   <router-view />
 </template>
 
-<style scoped>
-
-</style>

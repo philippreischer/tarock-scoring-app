@@ -17,7 +17,7 @@
 <template>
     <!--<div v-if="isReady">-->
         <h1 v-if="gameStore.games.length === 0" class="font-size-large default-text">
-            <span>Erstelle eint</span>
+            <span>Erstelle ein</span>
             <span>neues Spiel</span>
         
         </h1>

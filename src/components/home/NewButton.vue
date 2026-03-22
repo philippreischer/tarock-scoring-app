@@ -14,12 +14,10 @@
             <span>Neues Spiel</span>
         </div>
 
-
-
         <div v-else-if="gameStore.newGameActiv" 
         class="button font-size-medium"
         @click="gameStore.openNewPlayerCard(true)">
-            <span>Neuer Spiel</span>
+            <span>Spieler hinzufügen</span>
         </div>
     </div>  
 </template>

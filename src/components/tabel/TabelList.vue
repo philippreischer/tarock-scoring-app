@@ -1,31 +1,7 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
-    import { ref } from 'vue';
     const gameStore = useGameStore();
 
-
-    const status= ref('color-green')
-/*
-    const statusColor = computed(() => ({
-        'color-gray': status.value === 'notPlayed',
-        'color-green': status.value === 'win',
-        'color-red': status.value === 'lose'
-    }))
-
-
-    const statusColor = player => {
-        if (player.status === 'notPlayed') {
-            return 'color-gray'; 
-        } else if (player.status === 'win') {
-            return 'color-green';
-        } else if (player.status === 'lose') {
-            return 'color-red';
-        }
-        console.log(statusColor);
-    }
-*/
-
-    
 </script>
 
 <template>   

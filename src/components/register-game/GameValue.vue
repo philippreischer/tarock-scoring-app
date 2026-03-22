@@ -7,6 +7,7 @@
 
     function handleClick() {
         gameStore.addNewRound();
+        gameStore.errorMessageActive?"":
         setTimeout(() => {
         router.push("/tabelle")
         }, 300)

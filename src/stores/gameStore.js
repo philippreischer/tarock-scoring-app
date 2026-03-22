@@ -1,3 +1,4 @@
+import ErrorMessage from '@/components/ErrorMessage.vue';
 import { defineStore } from 'pinia';
 
 export const useGameStore = defineStore(`games`, {
@@ -14,7 +15,9 @@ export const useGameStore = defineStore(`games`, {
         pupUp: "",
         addDoubleActive: false,
         deleteGamePopUpActive: false,
-        
+        errorMessageActive: false,
+        errorMessage: "",
+
 
         currentGameValue:"",
         currentWin: 0,
@@ -142,6 +145,21 @@ export const useGameStore = defineStore(`games`, {
             this.newPlayerActive = false;
             this.pupUp = "";
         },
+        openErrorMessage(){
+            this.errorMessageActive = true;
+            if (this.games.length < 1) {
+                this.errorMessage = "Ungültiger eintrag! Erstelle zuerst ein neues Spiel";
+                
+            } else if (this.games[this.activeGameIndex].players.length < 2){
+                this.errorMessage = "Ungültiger eintrag! Füge mindestens 2 Spieler hinzu";
+            } else {
+                this.errorMessage = "Ungültiger eintrag";
+            }
+            setTimeout(() => {
+            this.errorMessageActive = false;
+            }, 1500);
+        },
+        
         openAddDoublePopUp(){
             this.addDoubleActive = !this.addDoubleActive;
         },
@@ -181,6 +199,26 @@ export const useGameStore = defineStore(`games`, {
             console.log(this.currentGameValue);
         },
         addNewRound() {
+            console.log("currentGameValue: " + this.currentGameValue);
+            console.log("this.currentWin: " + this.currentWin);
+            console.log("this.currentLose: " + this.currentLose);
+            if(((this.currentWin === 0 && this.currentLose === 0) && !(this.currentGameValue === "" || this.currentGameValue === 0))
+                || (this.currentWin > 0 && (this.currentGameValue === "" || this.currentGameValue === 0))
+                || (this.currentLose > 0 && (this.currentGameValue === "" || this.currentGameValue === 0))
+                || (this.currentWin > 0 && this.currentLose === 0)
+                || (this.currentWin === 0 && this.currentLose > 0)
+                || (this.currentWin > 3 || this.currentLose > 3) 
+                || this.games.length < 1){
+                console.log("Ungültiges Spiel");
+                this.openErrorMessage();
+                this.updateddate();
+                console.log("currentGameValue: " + this.currentGameValue);
+                this.currentGameValue = "";
+                console.log("currentGameValue: " + this.currentGameValue);
+                this.resetAllPlayers();
+                return
+            }
+
             this.checkDoubelRounds();
             console.log("this.activeGameIndex: " + this.activeGameIndex);
             this.games[this.activeGameIndex].players.forEach((player, index) => {
@@ -225,18 +263,15 @@ export const useGameStore = defineStore(`games`, {
                 this.pushPlayerValue(player , index, 1, 'color-green');
             } else if (player.status === "lose" && this.currentWin === 1 && this.currentLose === 1){
                 this.pushPlayerValue(player , index, -1, 'color-red');
-            }   else {
+            } else {
                 this.pushPlayerValue(player, index, 0, 'color-gray');   
-            }
+            } 
             
         }, 
         pushPlayerValue(player, index, multiplier, color){
             //if (!Array.isArray(this.games[this.activeGameIndex].players[index].colorList)) {
             //    this.games[this.activeGameIndex].players[index].statusColor = []
             //}
-
-
-
             if (this.games[this.activeGameIndex].rounds === 0){
                 this.games[this.activeGameIndex].players[index].points.push( 
                     (Number(this.currentGameValue)) * Number(multiplier)
@@ -244,8 +279,6 @@ export const useGameStore = defineStore(`games`, {
                 );
                 this.games[this.activeGameIndex].players[index].colorList.push(color);
                 console.log("ColorList index"+ index + ": " + this.games[this.activeGameIndex].players[index].colorList);
-                //this.games[this.activeGameIndex].players[index].statusColor = color;
-                //console.log("ColorTest2 " + this.games[this.activeGameIndex].players[index].statusColor);
             } else {
                 this.games[this.activeGameIndex].players[index].points.push(
                     this.games[this.activeGameIndex].doubleRoundsActive? 
@@ -254,13 +287,12 @@ export const useGameStore = defineStore(`games`, {
                 
                 );
                 this.games[this.activeGameIndex].players[index].colorList.push(color);
-                //console.log("ColorTest1 " + this.games[this.activeGameIndex].players[index].statusColor);
-                //this.games[this.activeGameIndex].players[index].statusColor = color;
-                //console.log("ColorTest2 " + this.games[this.activeGameIndex].players[index].statusColor);
                 console.log("ColorList index"+ index + ": " + this.games[this.activeGameIndex].players[index].colorList);
             }
         },
         deleteLastEntry(){
+            if(this.games[this.activeGameIndex].players.length < 2) return;
+
             this.games[this.activeGameIndex].gamePoints.pop();
             this.games[this.activeGameIndex].players.forEach((player, index) => {
                 this.games[this.activeGameIndex].players[index].points.pop();
@@ -304,11 +336,8 @@ export const useGameStore = defineStore(`games`, {
                 player.status = 'notPlayed';
                 this.currentWin = 0;
                 this.currentLose = 0;
-                
             })
-
-        }
-        
+        }       
     }   
 });
 
