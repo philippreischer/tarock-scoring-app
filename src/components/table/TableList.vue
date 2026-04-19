@@ -1,38 +1,36 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-
 </script>
 
 <template>
-        <table v-if="gameStore.games.length > 0" class="table font-size-small">
-            <tr class="table-grid font-size-small">
-                <th class="table-head"
-                    v-for="player in gameStore.games[gameStore.activeGameIndex].players"
-                    :key="player.id">
-                        {{ player.name }}
-                </th>
-                <th class="table-head color-gray">
-                    Punkte
-                </th>
-            </tr>
-            <tr class="table-grid"
-                v-for="(_, index) in gameStore.games[gameStore.activeGameIndex].rounds"
-                :key="index"
-            >
-                <td class="table-item "
+    <div v-if="gameStore.games.length > 0" class="table font-size-small">
+        <div class="table-grid table-header font-size-small">
+            <div class="table-head"
+                v-for="player in gameStore.games[gameStore.activeGameIndex].players"
+                :key="player.id">
+                    {{ player.name }}
+            </div>
+            <div class="table-head color-gray">
+                Punkte
+            </div>
+        </div>
+        <div class="table-grid"
+            v-for="(_, index) in gameStore.games[gameStore.activeGameIndex].rounds"
+            :key="index"
+        >
+            <div class="table-item"
                 v-for="player in gameStore.games[gameStore.activeGameIndex].players"
                 :key="player.id"
                 :class="player.colorList[index]"
-                >
-                <!--{{ player.colorList[index] }}-->
-                    {{ player.points[index] }}
-                </td>
-                <td class="table-item" >
-                    {{ gameStore.games[gameStore.activeGameIndex].gamePoints[index] }}
-                </td>
-            </tr>
-        </table>
+            >
+                {{ player.points[index] }}
+            </div>
+            <div class="table-item">
+                {{ gameStore.games[gameStore.activeGameIndex].gamePoints[index] }}
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -40,21 +38,17 @@
         width: 100%;
     }
 
-    th{
-       font-weight: normal;
-    }
-
-    .table-grid {
-        display: grid;
-        grid-auto-flow: column;
-        margin: 8px 10px;
-    }
-
     .table-grid {
         display: flex;
         justify-content: space-between;
+        margin: 8px 10px;
+    }
 
-
+    .table-header {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: white;
     }
 
     .table-head {
@@ -66,9 +60,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column-reverse;
+        font-weight: normal;
     }
-
 
     .table-item {
         flex: 1 1 50px;
@@ -80,5 +73,4 @@
         justify-content: center;
         align-items: center;
     }
-
 </style>
