@@ -4,24 +4,24 @@
 
 </script>
 
-<template>   
+<template>
         <table v-if="gameStore.games.length > 0" class="tabel font-size-small">
             <tr class="tabel-grid font-size-small">
-                <th class="tabel-head" 
-                    v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
+                <th class="tabel-head"
+                    v-for="player in gameStore.games[gameStore.activeGameIndex].players"
                     :key="player.id">
                         {{ player.name }}
-                </th> 
+                </th>
                 <th class="tabel-head color-gray">
                     Punkte
-                </th>  
+                </th>
             </tr>
-            <tr class="tabel-grid" 
-                v-for="(game, index) in gameStore.games[gameStore.activeGameIndex].rounds" 
+            <tr class="tabel-grid"
+                v-for="(game, index) in gameStore.games[gameStore.activeGameIndex].rounds"
                 :key="index"
             >
                 <td class="tabel-item "
-                v-for="player in gameStore.games[gameStore.activeGameIndex].players" 
+                v-for="player in gameStore.games[gameStore.activeGameIndex].players"
                 :key="player.id"
                 :class="player.colorList[index]"
                 >
@@ -30,9 +30,9 @@
                 </td>
                 <td class="tabel-item" >
                     {{ gameStore.games[gameStore.activeGameIndex].gamePoints[index] }}
-                </td> 
+                </td>
             </tr>
-        </table>     
+        </table>
 </template>
 
 <style scoped>
@@ -41,7 +41,7 @@
     }
 
     th{
-       font-weight: normal; 
+       font-weight: normal;
     }
 
     .tabel-grid {
@@ -53,8 +53,8 @@
     .tabel-grid {
         display: flex;
         justify-content: space-between;
-        
-        
+
+
     }
 
     .tabel-head {
@@ -69,7 +69,7 @@
         flex-direction: column-reverse;
     }
 
- 
+
     .tabel-item {
         flex: 1 1 50px;
         min-height: 50px;

@@ -2,9 +2,9 @@
 import DeleteEntryButton from './DeleteEntryButton.vue';
 import DeleteEntryPopUp from './DeleteEntryPopUp.vue';
 import GameInformation from './GameInformation.vue';
-import TableList from './TabelList.vue';
+import TableList from './TableList.vue';
 import  { useGameStore } from '@/stores/gameStore.js';
-    
+
     const gameStore = useGameStore();
 
 </script>
