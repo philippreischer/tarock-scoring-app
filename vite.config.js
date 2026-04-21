@@ -4,10 +4,10 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
-  base: './',
+  base: process.env.GITHUB_PAGES === 'true' ? '/tarock-scoring-app/' : '/',
 
   build: {
-    outDir: '../tarock-app/www',
+    outDir: process.env.GITHUB_PAGES === 'true' ? 'dist' : '../tarock-app/www',
     emptyOutDir: true
   },
 
