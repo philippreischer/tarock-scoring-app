@@ -1,7 +1,6 @@
 <script setup>
     import  { useGameStore } from '@/stores/gameStore.js';
     const gameStore = useGameStore();
-    console.log(gameStore.games[gameStore.activeGameIndex].players[gameStore.activePlayerIndex])
 </script>
 
 <template>

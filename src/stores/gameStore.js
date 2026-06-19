@@ -27,9 +27,7 @@ export const useGameStore = defineStore(`games`, {
     persist: true,
     actions: {
         changeHomeList(to, index) {
-            console.log(to)
-            console.log(index)
-            this.activeGameIndex = index; 
+            this.activeGameIndex = index;
             this.newGameActiv = to;  
         }, 
         addNewGame() {
@@ -51,7 +49,6 @@ export const useGameStore = defineStore(`games`, {
             this.changeHomeList(true, this.games.length -1)   
         },
         openNewPlayerCard(to) {
-            console.log(to)
             this.newPlayerActive = to;
             this.pupUp = 'NewPlayerPopUp';
         },
@@ -76,13 +73,10 @@ export const useGameStore = defineStore(`games`, {
                 }
             }
             this.closePopUp()
-            console.log("Player: " + this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].players.length -1].status) 
         },
         changePlayerOpen(index){
-            this.changePlayerActive = true; 
-            console.log("index: " + index)
+            this.changePlayerActive = true;
             this.activePlayerIndex = index;
-            console.log("index P: " + this.activePlayerIndex)
             this.pupUp = 'ChangePlayerPopUp';
         },
         deleteGameOpen(){
@@ -90,8 +84,6 @@ export const useGameStore = defineStore(`games`, {
             this.pupUp = 'DeleteGamePopUp';
         },
         deleteGame(index) {
-            console.log("Index: " + index)
-            console.log(this.games)
             this.games.splice(index, 1);
             this.closePopUp();
             this.newGameActiv = false;
@@ -153,42 +145,30 @@ export const useGameStore = defineStore(`games`, {
         },
         addNumber(number) {
             this.currentGameValue += number;
-            console.log(this.currentGameValue);
         },
         deleteLastNumber() {
             this.currentGameValue = this.currentGameValue.slice(0, -1);
-            console.log(this.currentGameValue);
         },
         addNewRound() {
-            console.log("currentGameValue: " + this.currentGameValue);
-            console.log("this.currentWin: " + this.currentWin);
-            console.log("this.currentLose: " + this.currentLose);
             if(((this.currentWin === 0 && this.currentLose === 0) && !(this.currentGameValue === "" || this.currentGameValue === 0))
                 || (this.currentWin > 0 && (this.currentGameValue === "" || this.currentGameValue === 0))
                 || (this.currentLose > 0 && (this.currentGameValue === "" || this.currentGameValue === 0))
                 || (this.currentWin > 0 && this.currentLose === 0)
                 || (this.currentWin === 0 && this.currentLose > 0)
-                || (this.currentWin > 3 || this.currentLose > 3) 
+                || (this.currentWin > 3 || this.currentLose > 3)
                 || this.games.length < 1){
-                console.log("Ungültiges Spiel");
                 this.openErrorMessage();
                 this.updateddate();
-                console.log("currentGameValue: " + this.currentGameValue);
                 this.currentGameValue = "";
-                console.log("currentGameValue: " + this.currentGameValue);
                 this.resetAllPlayers();
                 return
             }
 
             this.checkDoubelRounds();
-            console.log("this.activeGameIndex: " + this.activeGameIndex);
             this.games[this.activeGameIndex].players.forEach((player, index) => {
                 this.calculateGameValue(player, index);
-                console.log("Index: " + (index));
-                console.log("Array" + player);
             });
             this.games[this.activeGameIndex].rounds++;
-            console.log("this.rounds:" + this.games[this.activeGameIndex].rounds);
             this.games[this.activeGameIndex].gamePoints.push(
                 this.games[this.activeGameIndex].doubleRoundsActive? 
                 (Number(this.currentGameValue) * 2) : Number(this.currentGameValue)
@@ -239,26 +219,23 @@ export const useGameStore = defineStore(`games`, {
                     
                 );
                 this.games[this.activeGameIndex].players[index].colorList.push(color);
-                console.log("ColorList index"+ index + ": " + this.games[this.activeGameIndex].players[index].colorList);
             } else {
                 this.games[this.activeGameIndex].players[index].points.push(
-                    this.games[this.activeGameIndex].doubleRoundsActive? 
-                    (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue) * Number(multiplier) * 2)) : 
+                    this.games[this.activeGameIndex].doubleRoundsActive?
+                    (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue) * Number(multiplier) * 2)) :
                     (Number(player.points[player.points.length -1]) + (Number(this.currentGameValue)) * Number(multiplier))
-                
+
                 );
                 this.games[this.activeGameIndex].players[index].colorList.push(color);
-                console.log("ColorList index"+ index + ": " + this.games[this.activeGameIndex].players[index].colorList);
             }
         },
         deleteLastEntry(){
             if(this.games[this.activeGameIndex].players.length < 2) return;
 
             this.games[this.activeGameIndex].gamePoints.pop();
-            this.games[this.activeGameIndex].players.forEach((player, index) => {
+            this.games[this.activeGameIndex].players.forEach((_, index) => {
                 this.games[this.activeGameIndex].players[index].points.pop();
                 this.games[this.activeGameIndex].players[index].colorList.pop();
-                console.log("id " + this.games[this.activeGameIndex].players[player.id -1])
             });
             if(this.games[this.activeGameIndex].dealerIndex > 1) {
                 this.games[this.activeGameIndex].dealerIndex = this.games[this.activeGameIndex].dealerIndex -2;
@@ -279,13 +256,11 @@ export const useGameStore = defineStore(`games`, {
             if(this.games[this.activeGameIndex].dealerIndex < this.games[this.activeGameIndex].players.length){
                 this.games[this.activeGameIndex].dealer = this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].dealerIndex].name;
                 this.games[this.activeGameIndex].dealerIndex++;
-                console.log("this.dealer " + this.games[this.activeGameIndex].dealer)
             } else {
                 this.games[this.activeGameIndex].dealerIndex = 0;
                 this.games[this.activeGameIndex].dealer = this.games[this.activeGameIndex].players[this.games[this.activeGameIndex].dealerIndex].name;
                 this.games[this.activeGameIndex].dealerIndex++;
-                console.log("this.dealer " + this.games[this.activeGameIndex].dealer)
-            }   
+            }
         },
         resetAllPlayers(){
             if(this.games.length === 0){

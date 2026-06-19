@@ -15,8 +15,6 @@
         //setTimeout(() => {
         //isReady.value = true
         //router.push("/tabelle")
-        //console.log("Test R1")
-        
         //}, 50)
         
     })   

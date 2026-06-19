@@ -9,7 +9,6 @@
 
 
     const changeStatus = player => {
-        console.log("player.status: " + player.status)
         if (player.status === 'notPlayed') {
             player.statusColor = 'color-green';
             player.statusText = 'gewonnen';
@@ -27,11 +26,6 @@
             player.status = 'notPlayed';
             Number(gameStore.currentLose--);
         }
-        console.log("player.status: " + player.status)
-        console.log("Ob: " + gameStore.games[gameStore.activeGameIndex].players[1].status)
-        console.log("Ob: " + gameStore.games[gameStore.activeGameIndex].players[1].statusColor)
-        console.log("gameStore.currentWin: " + gameStore.currentWin)
-        console.log("gameStore.currentLose: " + gameStore.currentLose)
     }
 
 </script>
