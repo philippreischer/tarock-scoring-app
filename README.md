@@ -1,8 +1,8 @@
 # Tarock Scoring App
 
-> A web app for tracking scores in XX rufen Königrufen — an Austrian Tarock card game with complex scoring rules.
+> A score-tracking web app for XX rufen and Königrufen — two variants of the Austrian card game Tarock, known for their intricate scoring.
 
-**[Live Demo](https://philippreischer.github.io/tarock-scoring-app/)**
+🔗 **Live Demo:** https://philippreischer.github.io/tarock-scoring-app/
 
 ![Active game table](./screenshots/screenshot-active-game.png)
 
@@ -39,7 +39,7 @@ All scoring logic lives in a single Pinia action (`calculateGameValue`) that enc
 
 ## Domain Note
 
-Tarock XX rufen and Königrufen is a traditional Austrian card game with intricate scoring rules — including contracts (Rufer, Solorufer, Solo, Bettler, etc.), bonus announcements (Pagat ultimo, Trull, etc.), and multipliers. Manual scorekeeping on paper is error-prone; this app automates the calculation and tracks running totals across multiple rounds.
+XX rufen and Königrufen are variants of Tarock, a traditional Austrian card game with intricate scoring rules — contracts (Rufer, Solorufer, Solo, Bettler, …), bonus announcements (Pagat ultimo, Trull, …), and multipliers. Manual scorekeeping on paper is error-prone; this app automates the calculation and tracks running totals across rounds.
 
 ## Local Setup
 
@@ -75,7 +75,7 @@ The live demo is deployed manually: the built output is copied from `../tarock-a
 
 ## Background
 
-Built to replace error-prone paper scorekeeping in my own Tarock round. The main challenge was translating Königrufen's scoring rules — with all team compositions, contracts, and announcements — into clean code. This was also my first Vue 3 project, and my first time deploying via Cordova for Android and GitHub Pages for the web demo.
+Built to replace error-prone paper scorekeeping in my own Tarock round. The main challenge was translating the scoring rules — with all team compositions, contracts, and announcements — into clean code. It was my first fully self-directed project (before it, I'd only built guided exercises during my course), and my first time deploying via Cordova for Android and GitHub Pages for the web demo.
 
 ## Status
 
